@@ -63,6 +63,69 @@ MonoBehaviour:
       _node: {fileID: -8135567540279800599}
       _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  parent: {fileID: 0}
+  childs: []
+  duration: 1
+  size: {x: 0, y: 0, z: 0}
+  pos: {x: 0, y: 0, z: 0}
+--- !u!114 &-5954451443610227214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c04c0625cb60944b3b80a7c76d52c7, type: 3}
+  m_Name: Set Hit Box
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 188.11107, y: 11.616945}
+  ports:
+    keys:
+    - childs
+    - size
+    - parent
+    - parent 0
+    values:
+    - _fieldName: childs
+      _node: {fileID: -5954451443610227214}
+      _typeQualifiedName: System.Collections.Generic.List`1[[SkillNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: size
+      _node: {fileID: -5954451443610227214}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent
+      _node: {fileID: -5954451443610227214}
+      _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent 0
+      _node: {fileID: -5954451443610227214}
+      _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
       connections:
       - fieldName: childs 0
         node: {fileID: 79122059999870085}
@@ -73,9 +136,8 @@ MonoBehaviour:
       _dynamic: 1
   parent: {fileID: 0}
   childs: []
-  duration: 1
-  size: {x: 0, y: 0, z: 0}
-  pos: {x: 0, y: 0, z: 0}
+  duration: 0.25
+  size: {x: 0.5, y: 0.3, z: 0.75}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 79122059999870085}
-  - {fileID: -8135567540279800599}
+  - {fileID: -5954451443610227214}
   rootNode: {fileID: 79122059999870085}
 --- !u!114 &79122059999870085
 MonoBehaviour:
@@ -137,7 +199,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: parent 0
-        node: {fileID: -8135567540279800599}
+        node: {fileID: -5954451443610227214}
         reroutePoints: []
       _direction: 1
       _connectionType: 0

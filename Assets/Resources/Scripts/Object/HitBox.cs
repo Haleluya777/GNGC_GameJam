@@ -24,7 +24,5 @@ public class HitBox : PoolAble
     void OnTriggerEnter(Collider other)
     {
         if (caster == null || other.gameObject.tag == caster.GetGameObject().tag) return;
-
-
     }
 }

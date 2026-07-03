@@ -12,5 +12,6 @@ public class ObjectPoolManager : MonoBehaviour, IDataInitializable
         Debug.Log("초기화됨");
         poolDic.Add("Enemy", transform.GetChild(0).GetComponent<ObjectPooler>());
         poolDic.Add("Bullet", transform.GetChild(1).GetComponent<ObjectPooler>());
+        poolDic.Add("HitBox", transform.GetChild(2).GetComponent<ObjectPooler>());
     }
 }

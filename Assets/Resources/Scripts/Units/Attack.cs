@@ -7,6 +7,7 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 {
     public SkillModule shootSkill;
     public SkillModule dashSkill;
+    public SkillModule parryingSkill;
     [SerializeField] private GameObject parentObj;
     private Animator anim;
 
@@ -14,6 +15,7 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
     {
         shootSkill.UpdateCoolDown(Time.deltaTime);
         dashSkill.UpdateCoolDown(Time.deltaTime);
+        parryingSkill.UpdateCoolDown(Time.deltaTime);
     }
 
     public void DataInitialize()
@@ -22,9 +24,11 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 
         shootSkill = Instantiate(shootSkill);
         dashSkill = Instantiate(dashSkill);
+        parryingSkill = Instantiate(parryingSkill);
 
         shootSkill.InitSkill();
         dashSkill.InitSkill();
+        parryingSkill.InitSkill();
     }
 
     public void ProccessCoolDown()
@@ -37,6 +41,14 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
         if (context.phase == InputActionPhase.Performed)
         {
             shootSkill.UseSKill(this);
+        }
+    }
+
+    public void Melee(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            parryingSkill.UseSKill(this);
         }
     }
 
