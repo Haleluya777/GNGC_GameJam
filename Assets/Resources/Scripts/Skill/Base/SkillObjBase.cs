@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class SkillObjBase : PoolAble
 {
+    public ISkillCaster caster;
+
     public abstract void ObjMovement();
     public virtual void ObjInit(Vector3 dir, int _dmg, int _stunDmg, string _tag, ISkillCaster _caster)
     {

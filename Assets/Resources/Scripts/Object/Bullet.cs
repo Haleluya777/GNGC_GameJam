@@ -17,17 +17,18 @@ public class Bullet : SkillObjBase
 
     public override void ObjMovement()
     {
-        rigid.MovePosition(rigid.position + transform.forward * Time.deltaTime * 10f);
+        rigid.MovePosition(rigid.position + transform.forward * Time.deltaTime * 15f);
     }
 
     public override void ObjInit(Vector3 dir, int _dmg, int _stunDmg, string _tag, ISkillCaster _caster)
     {
         isReleased = false;
         this.gameObject.tag = _tag;
+        this.caster = _caster;
 
         this.transform.rotation = Quaternion.LookRotation(dir.normalized);
         if (delayCall != null && delayCall.IsActive()) delayCall.Kill();
-        delayCall = DOVirtual.DelayedCall(3f, () => { if (!isReleased) ReturnToPool(); });
+        delayCall = DOVirtual.DelayedCall(10f, () => { if (!isReleased) ReturnToPool(); });
     }
 
     public void ReturnToPool()

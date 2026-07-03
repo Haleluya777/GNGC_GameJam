@@ -27,13 +27,25 @@ public class HitBox : PoolAble
         {
             if (other.gameObject.tag != this.gameObject.tag) //근데 내 총알이 아닐 때.
             {
-                //무지개반사.
+                //무지개반사. 
+                other.gameObject.tag = this.gameObject.tag;
+                var casterTransform = other.gameObject.GetComponent<SkillObjBase>().caster.GetCom<Transform>();
+
+                if (casterTransform == null) return;
+
+                Vector3 dir = casterTransform.position - caster.GetGameObject().transform.position;
+                dir.y = 0f;
+                other.gameObject.transform.rotation = Quaternion.LookRotation(dir.normalized);
             }
         }
-        else //히트박스가 적에게 맞을 때.
+        else //총알을 제외한 나머지
         {
-            other.TryGetComponent<IDamageable>(out var damageable);
-            damageable.TakeDamage(2);
+            if (this.gameObject.tag != other.tag)
+            {
+                Debug.Log("강타");
+                other.TryGetComponent<IDamageable>(out var damageable);
+                damageable.TakeDamage(2);
+            }
         }
     }
 }
