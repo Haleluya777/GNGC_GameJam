@@ -12,8 +12,8 @@ public class Attack : MonoBehaviour, ISkillCaster
     {
         testSkill.rootNode.Evaluate(this);
 
-        var bullet = LocalGameManager.instance.objectPoolManager.poolDic["Bullet"].GetGo("Bullet");
-        bullet.transform.position = Vector3.zero;
+        //var bullet = LocalGameManager.instance.objectPoolManager.poolDic["Bullet"].GetGo("Bullet");
+        //bullet.transform.position = Vector3.zero;
     }
 
     public void Dash()
