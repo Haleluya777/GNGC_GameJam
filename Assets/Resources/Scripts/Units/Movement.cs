@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private Rigidbody rigid;
-    [SerializeField] private Vector2 dir;
+    public Vector2 dir;
 
     private void Update()
     {
@@ -20,10 +20,10 @@ public class Movement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("엘렐레");
         if (context.phase == InputActionPhase.Performed)
         {
             dir = context.ReadValue<Vector2>();
+            Debug.Log(dir);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {

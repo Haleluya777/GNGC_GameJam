@@ -18,10 +18,9 @@ public class Bullet : SkillObjBase
         rigid.MovePosition(rigid.position + transform.forward * Time.deltaTime * 10f);
     }
 
-    public override void ObjInit(Vector2 dir, int _dmg, int _stunDmg, string _tag, ISkillCaster _caster)
+    public override void ObjInit(Vector3 dir, int _dmg, int _stunDmg, string _tag, ISkillCaster _caster)
     {
-        currentDir = dir;
-        Debug.Log(dir);
+        this.transform.rotation = Quaternion.LookRotation(dir.normalized);
         Invoke("ReturnToPool", 3f);
     }
 

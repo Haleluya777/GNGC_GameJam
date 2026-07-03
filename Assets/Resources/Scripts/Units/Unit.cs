@@ -35,14 +35,15 @@ public class Unit : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if (unitData.unitType == PublicEnums.UnitType.AI) return;
-
-        Ray ray = cam.ScreenPointToRay(mouseScreenPos);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
+        if (unitData.unitType == PublicEnums.UnitType.Player)
         {
-            Vector3 targetPoint = hit.point;
-            dir = targetPoint - this.gameObject.transform.position;
-            dir.y = 0;
+            Ray ray = cam.ScreenPointToRay(mouseScreenPos);
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
+            {
+                Vector3 targetPoint = hit.point;
+                dir = targetPoint - this.gameObject.transform.position;
+                dir.y = 0;
+            }
         }
     }
 

@@ -5,20 +5,28 @@ using UnityEngine.InputSystem;
 
 public class Attack : MonoBehaviour, ISkillCaster
 {
-    public SkillNodeGraph testSkill;
+    public SkillNodeGraph shootSkill;
+    public SkillNodeGraph dashSkill;
     [SerializeField] private GameObject parentObj;
+
+    void Update()
+    {
+
+    }
+
+    public void ProccessCoolDown()
+    {
+
+    }
 
     public void PerformAttack(InputAction.CallbackContext context)
     {
-        testSkill.rootNode.Evaluate(this);
-
-        //var bullet = LocalGameManager.instance.objectPoolManager.poolDic["Bullet"].GetGo("Bullet");
-        //bullet.transform.position = Vector3.zero;
+        shootSkill.rootNode.Evaluate(this);
     }
 
     public void Dash()
     {
-        Debug.Log("짜란");
+        dashSkill.rootNode.Evaluate(this);
     }
 
     public void PlayAnimation(string animName)
