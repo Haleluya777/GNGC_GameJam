@@ -1,0 +1,90 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+[Serializable]
+public struct UnitData
+{
+    public PublicEnums.UnitType unitType;
+    public int maxHp;
+    public int curHp;
+}
+
+public class Unit : MonoBehaviour, IDamageable
+{
+    public UnitData unitData;
+    public Dictionary<string, StatusEffectBase> activeEffect = new Dictionary<string, StatusEffectBase>(); //유닛에 진행중인 상태 이상들. 버프/디버프 등
+    public Dictionary<string, Coroutine> activeEffectCoroutines = new Dictionary<string, Coroutine>(); //상태이상 지속을 돕는 코루틴.
+
+    public void TakeDamage(int dmg)
+    {
+        unitData.curHp -= dmg;
+    }
+
+    public void Dead()
+    {
+
+    }
+
+    public void AddEffectProcess(StatusEffectBase effect)
+    {
+        if (!this.gameObject.activeSelf) return;
+        ApplyEffect(effect);
+    }
+
+    private void ApplyEffect(StatusEffectBase effect) //상태 이상 적용.
+    {
+        //적용하려는 상태이상이 이미 존재하고 있는 경우. 적용되어 있는 상태이상 제거 후 다시 재적용.
+        if (activeEffect.TryGetValue(effect.effectName, out StatusEffectBase exisitngEffect))
+        {
+            if (activeEffectCoroutines.TryGetValue(effect.effectName, out Coroutine runningCoroutine))
+            {
+                //코루틴을 이용한 상태이상의 타이머 제거.
+                LocalGameManager.instance.coroutineRunner.StopCoroutine(runningCoroutine);
+            }
+            //적용 되어 있는 상태이상 또한 제거.
+            exisitngEffect.RemoveEffect(true);
+        }
+
+        activeEffect[effect.effectName] = effect;
+        effect.ApplyEffect();
+
+        if (effect.duration > 0)
+        {
+            Coroutine newCoroutine = LocalGameManager.instance.coroutineRunner.StartRunnerCoroutine(RemoveEffectAfterDuration(effect));
+            activeEffectCoroutines[effect.effectName] = newCoroutine;
+        }
+    }
+
+    public void RemoveEffect(string effectName)
+    {
+        if (activeEffect.TryGetValue(effectName, out StatusEffectBase effect))
+        {
+            if (activeEffectCoroutines.TryGetValue(effectName, out Coroutine runningCoroutine))
+            {
+                LocalGameManager.instance.coroutineRunner.StopCoroutine(runningCoroutine);
+                activeEffectCoroutines.Remove(effectName);
+            }
+
+            effect.RemoveEffect();
+            activeEffect.Remove(effectName);
+        }
+    }
+
+    public bool FindEffect(string effectName) //해당 이름의 상태 이상이 존재하는지 체크.
+    {
+        return activeEffect.ContainsKey(effectName);
+    }
+
+    IEnumerator RemoveEffectAfterDuration(StatusEffectBase effect) //상태 이상 삭제.
+    {
+        yield return new WaitForSeconds(effect.duration);
+        effect.RemoveEffect();
+        activeEffect.Remove(effect.effectName);
+        activeEffectCoroutines.Remove(effect.effectName);
+        //GameManager.instance.uIManager.combatUI.RemoveEffectUI(effect.effectName);
+        //GameManager.instance.uIManager.combatUI.UpdateEffectUI();
+    }
+}
