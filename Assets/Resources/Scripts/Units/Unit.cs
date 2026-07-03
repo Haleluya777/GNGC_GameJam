@@ -23,6 +23,14 @@ public class Unit : MonoBehaviour, IDamageable
     public Vector2 mouseScreenPos;
     public Vector3 dir;
 
+    void Awake()
+    {
+        foreach (IDataInitializable child in GetComponentsInChildren<IDataInitializable>())
+        {
+            child.DataInitialize();
+        }
+    }
+
     public void TakeDamage(int dmg)
     {
         unitData.curHp -= dmg;
@@ -44,6 +52,10 @@ public class Unit : MonoBehaviour, IDamageable
                 dir = targetPoint - this.gameObject.transform.position;
                 dir.y = 0;
             }
+        }
+        else
+        {
+
         }
     }
 

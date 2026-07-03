@@ -8,6 +8,7 @@ public class LocalGameManager : MonoBehaviour
 
     public CoroutineRunner coroutineRunner;
     public ObjectPoolManager objectPoolManager;
+    public UnitManager unitManager;
 
     void Awake()
     {

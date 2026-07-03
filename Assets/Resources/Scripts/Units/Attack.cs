@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Attack : MonoBehaviour, ISkillCaster
+public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 {
     public SkillNodeGraph shootSkill;
     public SkillNodeGraph dashSkill;
     [SerializeField] private GameObject parentObj;
+    private Animator anim;
 
     void Update()
     {
 
+    }
+
+    public void DataInitialize()
+    {
+        anim = parentObj.GetComponent<Animator>();
     }
 
     public void ProccessCoolDown()
@@ -24,14 +30,17 @@ public class Attack : MonoBehaviour, ISkillCaster
         shootSkill.rootNode.Evaluate(this);
     }
 
-    public void Dash()
+    public void Dash(InputAction.CallbackContext context)
     {
-        dashSkill.rootNode.Evaluate(this);
+        if (context.phase == InputActionPhase.Performed)
+        {
+            dashSkill.rootNode.Evaluate(this);
+        }
     }
 
     public void PlayAnimation(string animName)
     {
-
+        anim.CrossFade(animName, 0f);
     }
 
     public int GetAttackPower()
