@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "com.github.siccity.xnode": {
-      "version": "https://github.com/Siccity/xNode.git",
+      "version": "1.8.0",
       "depth": 0,
-      "source": "git",
+      "source": "registry",
       "dependencies": {},
-      "hash": "d6effd70f5574369e3415c423ef3e621ea309564"
+      "url": "https://package.openupm.com"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
