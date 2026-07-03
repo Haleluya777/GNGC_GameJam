@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "SkillModule")]
 public class SkillModule : ScriptableObject
 {
     public IBlackBoard blackBoard;
@@ -17,11 +18,12 @@ public class SkillModule : ScriptableObject
 
     void Awake()
     {
-        blackBoard = new BlackBoard();
+
     }
 
     public void InitSkill()
     {
+        blackBoard = new BlackBoard();
         blackBoard.Set("Condition", true);
 
         nodeGraph = Instantiate(nodeGraph);

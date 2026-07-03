@@ -122,6 +122,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &36740459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 36740461}
+  - component: {fileID: 36740460}
+  m_Layer: 0
+  m_Name: UnitManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &36740460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36740459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20a6e8030dce564881116d8b087ef07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerUnit: {fileID: 971215656}
+--- !u!4 &36740461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36740459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1068296678}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111879021
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 209504042}
   - component: {fileID: 209504043}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,8 +257,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootSkill: {fileID: 11400000, guid: e3aa530893f86ea47888469b544903c1, type: 2}
-  dashSkill: {fileID: 11400000, guid: a3536334c54691c4b9d816060cb841d9, type: 2}
+  dashSkill: {fileID: 0}
   parentObj: {fileID: 1497244912}
+--- !u!1 &420196846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 420196847}
+  - component: {fileID: 420196848}
+  m_Layer: 8
+  m_Name: AIController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &420196847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420196846}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1497244913}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &420196848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420196846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982b4ba3643629e44897ad57f01bc2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _curState: 0
+  parentObj: {fileID: 1497244912}
+  behaviorTree: {fileID: 11400000, guid: f953a1911c2eccf4f96a45649aa0dd4a, type: 2}
+  runningBT: 0
 --- !u!1 &497645600
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 547448309}
   - component: {fileID: 547448310}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,37 +654,6 @@ MonoBehaviour:
     perfab: {fileID: 2604076370881121801, guid: 2473594a4645b8e49825e42a5c6234b4,
       type: 3}
     count: 5
---- !u!1 &702168326
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 702168327}
-  m_Layer: 0
-  m_Name: dir
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &702168327
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702168326}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 971215650}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &742270914
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +1002,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HitBox
       objectReference: {fileID: 0}
+    - target: {fileID: 5953908565945435836, guid: b531228b09802a547b9dc0c4dc9ed9c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -955,7 +1022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 940501211}
   - component: {fileID: 940501212}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1043,7 +1110,7 @@ GameObject:
   - component: {fileID: 971215651}
   - component: {fileID: 971215655}
   - component: {fileID: 971215656}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerChar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1066,7 +1133,6 @@ Transform:
   - {fileID: 547448309}
   - {fileID: 1428268430}
   - {fileID: 1095920948}
-  - {fileID: 702168327}
   m_Father: {fileID: 2096979194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &971215651
@@ -1196,7 +1262,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1095920950}
         m_TargetAssemblyTypeName: Attack, Assembly-CSharp
         m_MethodName: Dash
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1260,7 +1326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1031960625}
   - component: {fileID: 1031960626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1328,6 +1394,7 @@ Transform:
   m_Children:
   - {fileID: 1123330197}
   - {fileID: 111879023}
+  - {fileID: 36740461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1068296679
@@ -1344,6 +1411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coroutineRunner: {fileID: 111879022}
   objectPoolManager: {fileID: 1123330198}
+  unitManager: {fileID: 36740460}
 --- !u!1 &1095920947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1095920948}
   - component: {fileID: 1095920950}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1390,7 +1458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootSkill: {fileID: 11400000, guid: e3aa530893f86ea47888469b544903c1, type: 2}
-  dashSkill: {fileID: 11400000, guid: a3536334c54691c4b9d816060cb841d9, type: 2}
+  dashSkill: {fileID: 11400000, guid: 51d41b808d48ce543ad38079c1bd589e, type: 2}
   parentObj: {fileID: 971215649}
 --- !u!1 &1104172195
 GameObject:
@@ -1579,7 +1647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1428268430}
   - component: {fileID: 1428268431}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1615,37 +1683,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 971215651}
   dir: {x: 0, y: 0}
---- !u!1 &1492889172
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1492889173}
-  m_Layer: 0
-  m_Name: dir
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1492889173
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1492889172}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1497244913}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1497244912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,13 +1695,13 @@ GameObject:
   - component: {fileID: 1497244917}
   - component: {fileID: 1497244914}
   - component: {fileID: 1497244915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1497244913
 Transform:
   m_ObjectHideFlags: 0
@@ -1678,10 +1715,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 420196847}
   - {fileID: 940501211}
   - {fileID: 1031960625}
   - {fileID: 209504042}
-  - {fileID: 1492889173}
   m_Father: {fileID: 2096979194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1497244914
@@ -2088,6 +2125,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HitBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953908565945435836, guid: b531228b09802a547b9dc0c4dc9ed9c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

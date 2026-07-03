@@ -5,19 +5,26 @@ using UnityEngine.InputSystem;
 
 public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 {
-    public SkillNodeGraph shootSkill;
-    public SkillNodeGraph dashSkill;
+    public SkillModule shootSkill;
+    public SkillModule dashSkill;
     [SerializeField] private GameObject parentObj;
     private Animator anim;
 
-    void Update()
+    void LateUpdate()
     {
-
+        shootSkill.UpdateCoolDown(Time.deltaTime);
+        dashSkill.UpdateCoolDown(Time.deltaTime);
     }
 
     public void DataInitialize()
     {
         anim = parentObj.GetComponent<Animator>();
+
+        shootSkill = Instantiate(shootSkill);
+        dashSkill = Instantiate(dashSkill);
+
+        shootSkill.InitSkill();
+        dashSkill.InitSkill();
     }
 
     public void ProccessCoolDown()
@@ -27,14 +34,17 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 
     public void PerformAttack(InputAction.CallbackContext context)
     {
-        shootSkill.rootNode.Evaluate(this);
+        if (context.phase == InputActionPhase.Performed)
+        {
+            shootSkill.UseSKill(this);
+        }
     }
 
     public void Dash(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            dashSkill.rootNode.Evaluate(this);
+            dashSkill.UseSKill(this);
         }
     }
 

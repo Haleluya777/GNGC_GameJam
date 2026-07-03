@@ -5,12 +5,15 @@ using UnityEngine;
 [CreateNodeMenu("BT/ShootingNode")]
 public class ShootingNode : BTNode
 {
-    [SerializeField] private SkillNodeGraph shootingModule;
+    //[SerializeField] private SkillNodeGraph shootingModule;
+    public SkillModule shootingSkill;
+    private ISkillCaster caster;
 
     public override NodeState Evaluate(AIController controller)
     {
-        Debug.Log("빵야빵야");
-        shootingModule.rootNode.Evaluate(controller.ParentObj.GetComponentInChildren<ISkillCaster>());
+        caster = controller.ParentObj.GetComponentInChildren<ISkillCaster>();
+        //shootingModule.rootNode.Evaluate(controller.ParentObj.GetComponentInChildren<ISkillCaster>());
+        caster.GetCom<Attack>().shootSkill.UseSKill(caster);
         return NodeState.Success;
     }
 }

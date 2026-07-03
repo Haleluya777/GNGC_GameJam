@@ -1,5 +1,97 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7153749535237547627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c2fe0d48066ee429bc7f787c547271, type: 3}
+  m_Name: Setting Distance
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 312, y: -24}
+  ports:
+    keys:
+    - parent
+    - parent 0
+    values:
+    - _fieldName: parent
+      _node: {fileID: -7153749535237547627}
+      _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent 0
+      _node: {fileID: -7153749535237547627}
+      _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childs 0
+        node: {fileID: -2514527692722752680}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  parent: {fileID: 0}
+--- !u!114 &-3876610167480648733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf075974cba01944b97a2f148fbb91d3, type: 3}
+  m_Name: Condition
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 312, y: 280}
+  ports:
+    keys:
+    - parent
+    - parent 0
+    values:
+    - _fieldName: parent
+      _node: {fileID: -3876610167480648733}
+      _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: parent 0
+      _node: {fileID: -3876610167480648733}
+      _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childs 0
+        node: {fileID: 4760820648718764371}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  parent: {fileID: 0}
+  leftSource: 1
+  leftKey: Distance
+  valueType: 0
+  sign: 3
+  rightSource: 0
+  rightKey: 
+  floatValue: 13.34
+  intValue: 0
+  boolValue: 0
+  stateValue: 0
 --- !u!114 &-2514527692722752680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20,6 +112,7 @@ MonoBehaviour:
     - parent
     - parent 0
     - childs 0
+    - childs 1
     values:
     - _fieldName: childs
       _node: {fileID: -2514527692722752680}
@@ -61,6 +154,18 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: parent 0
+        node: {fileID: -7153749535237547627}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: childs 1
+      _node: {fileID: -2514527692722752680}
+      _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: parent 0
         node: {fileID: 7558263130732817411}
         reroutePoints: []
       _direction: 1
@@ -69,6 +174,7 @@ MonoBehaviour:
       _dynamic: 1
   parent: {fileID: 0}
   childs:
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -89,9 +195,25 @@ MonoBehaviour:
   - {fileID: 7142512426157492445}
   - {fileID: -2514527692722752680}
   - {fileID: 7558263130732817411}
+  - {fileID: -3876610167480648733}
+  - {fileID: -7153749535237547627}
   rootNode: {fileID: 6048541164191606496}
   blackboard:
-    entries: []
+    entries:
+    - key: UnitPos
+      type: 4
+      stringVal: 
+      intVal: 0
+      floatVal: 0
+      boolVal: 0
+      vector3Val: {x: 3.099, y: 0.6, z: -6.51}
+    - key: Distance
+      type: 2
+      stringVal: 
+      intVal: 0
+      floatVal: 16.751867
+      boolVal: 0
+      vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &4760820648718764371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,13 +227,14 @@ MonoBehaviour:
   m_Name: Sequence
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 40, y: 248}
+  position: {x: 40, y: 328}
   ports:
     keys:
     - childs
     - parent
     - parent 0
     - childs 0
+    - childs 1
     values:
     - _fieldName: childs
       _node: {fileID: 4760820648718764371}
@@ -150,6 +273,18 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: parent 0
+        node: {fileID: -3876610167480648733}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: childs 1
+      _node: {fileID: 4760820648718764371}
+      _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: parent 0
         node: {fileID: 7142512426157492445}
         reroutePoints: []
       _direction: 1
@@ -158,6 +293,7 @@ MonoBehaviour:
       _dynamic: 1
   parent: {fileID: 0}
   childs:
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &5742049948697306050
 MonoBehaviour:
@@ -308,7 +444,7 @@ MonoBehaviour:
   m_Name: Shooting
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 328, y: 264}
+  position: {x: 312, y: 680}
   ports:
     keys:
     - parent
@@ -328,7 +464,7 @@ MonoBehaviour:
       _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: childs 0
+      - fieldName: childs 1
         node: {fileID: 4760820648718764371}
         reroutePoints: []
       _direction: 0
@@ -336,7 +472,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   parent: {fileID: 0}
-  shootingModule: {fileID: 11400000, guid: e3aa530893f86ea47888469b544903c1, type: 2}
+  shootingSkill: {fileID: 0}
 --- !u!114 &7558263130732817411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +486,7 @@ MonoBehaviour:
   m_Name: Aiming
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: 24}
+  position: {x: 312, y: 120}
   ports:
     keys:
     - parent
@@ -370,7 +506,7 @@ MonoBehaviour:
       _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: childs 0
+      - fieldName: childs 1
         node: {fileID: -2514527692722752680}
         reroutePoints: []
       _direction: 0
