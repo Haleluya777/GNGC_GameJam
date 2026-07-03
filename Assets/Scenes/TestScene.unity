@@ -602,8 +602,8 @@ GameObject:
   - component: {fileID: 971215650}
   - component: {fileID: 971215653}
   - component: {fileID: 971215651}
-  - component: {fileID: 971215654}
   - component: {fileID: 971215655}
+  - component: {fileID: 971215656}
   m_Layer: 0
   m_Name: Char
   m_TagString: Untagged
@@ -678,25 +678,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &971215654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971215649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d971dea1a6094489fef27fe7cf4717, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateChild: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  cam: {fileID: 545425540}
-  mouseScreenPos: {x: 0, y: 0}
-  dir: {x: 0, y: 0, z: 0}
 --- !u!114 &971215655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,7 +770,7 @@ MonoBehaviour:
     m_ActionName: PlayerControl/Dash[/Keyboard/leftShift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 971215654}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCharacter, Assembly-CSharp
         m_MethodName: MousePosition
         m_Mode: 0
@@ -808,6 +789,28 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerControl
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &971215656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971215649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a24c2329fe37b54da087b23de8c01d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitData:
+    unitType: 1
+    maxHp: 100
+    curHp: 100
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  cam: {fileID: 545425540}
+  mouseScreenPos: {x: 0, y: 0}
+  dir: {x: 0, y: 0, z: 0}
 --- !u!1 &1068296677
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,11 +25,12 @@ public class UnitMove : SkillNode
     public override void Evaluate(ISkillCaster caster)
     {
         destination = GetInputValue<Vector2>("destination", this.destination); //목적지 아웃풋을 받아옴.
+
         Rigidbody2D rigid = caster.GetCom<Rigidbody2D>();
-        BoxCollider2D col = caster.GetCom<BoxCollider2D>();
+        BoxCollider col = caster.GetCom<BoxCollider>();
         rigid.bodyType = RigidbodyType2D.Kinematic; //중력을 Kinematic으로 설정.(외부 중력에 영향을 받지 않기 위함.)
 
-        Vector2 virtualPos = rigid.position;
+        Vector3 virtualPos = rigid.position;
         Sequence moveSequence = DOTween.Sequence(); //닷트윈 시퀀스 생성.
 
         moveSequence.Join(DOTween.To(() => virtualPos.x, x => virtualPos.x = x, destination.x, durationX).SetEase(moveTypeX)); //X축 이동 따로.
@@ -37,7 +38,7 @@ public class UnitMove : SkillNode
 
         moveSequence.OnUpdate(() =>
         {
-            if (Physics2D.OverlapBox(virtualPos + col.offset, col.size, 0f, 1 << 3) != null) //이동하는 도중 유닛 콜라이더 크기만큼 오버랩을 생성해. 3레이어(벽)에 닿을 경우 시퀀스 취소 및 다음 노드 강제 실행.
+            if (Physics.OverlapBox(virtualPos + col.center, col.size, Quaternion.Euler(0, 0, 0), 1 << 3) != null) //이동하는 도중 유닛 콜라이더 크기만큼 오버랩을 생성해. 3레이어(벽)에 닿을 경우 시퀀스 취소 및 다음 노드 강제 실행.
             {
                 moveSequence.Kill();
                 ExecuteNode(caster);

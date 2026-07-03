@@ -33,7 +33,7 @@ public class Attack : MonoBehaviour, ISkillCaster
 
     public Vector2 GetDirection()
     {
-        Vector3 dir = parentObj.GetComponent<PlayerCharacter>().dir;
+        Vector3 dir = parentObj.GetComponent<Unit>().dir;
         return new Vector2(dir.x, dir.z);
     }
 

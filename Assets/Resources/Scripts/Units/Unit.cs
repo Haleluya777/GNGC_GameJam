@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [Serializable]
 public struct UnitData
@@ -18,6 +18,11 @@ public class Unit : MonoBehaviour, IDamageable
     public Dictionary<string, StatusEffectBase> activeEffect = new Dictionary<string, StatusEffectBase>(); //유닛에 진행중인 상태 이상들. 버프/디버프 등
     public Dictionary<string, Coroutine> activeEffectCoroutines = new Dictionary<string, Coroutine>(); //상태이상 지속을 돕는 코루틴.
 
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] Camera cam;
+    public Vector2 mouseScreenPos;
+    public Vector3 dir;
+
     public void TakeDamage(int dmg)
     {
         unitData.curHp -= dmg;
@@ -26,6 +31,24 @@ public class Unit : MonoBehaviour, IDamageable
     public void Dead()
     {
 
+    }
+
+    void Update()
+    {
+        if (unitData.unitType == PublicEnums.UnitType.AI) return;
+
+        Ray ray = cam.ScreenPointToRay(mouseScreenPos);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
+        {
+            Vector3 targetPoint = hit.point;
+            dir = targetPoint - this.gameObject.transform.position;
+            dir.y = 0;
+        }
+    }
+
+    public void MousePosition(InputAction.CallbackContext context)
+    {
+        mouseScreenPos = context.ReadValue<Vector2>();
     }
 
     public void AddEffectProcess(StatusEffectBase effect)
