@@ -41,11 +41,12 @@ public class Unit : MonoBehaviour, IDamageable
     public void TakeDamage(int dmg)
     {
         unitData.curHp -= dmg;
+        if (unitData.curHp <= 0) Dead();
     }
 
     public void Dead()
     {
-
+        this.gameObject.SetActive(false);
     }
 
     void Update()

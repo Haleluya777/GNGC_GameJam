@@ -6,6 +6,7 @@ public class Bullet : SkillObjBase
 {
     [SerializeField] private Rigidbody rigid;
     private Vector2 currentDir;
+    private Tween delayCall;
     private float moveSpeed = 10f;
     public bool isReleased;
 
@@ -25,7 +26,8 @@ public class Bullet : SkillObjBase
         this.gameObject.tag = _tag;
 
         this.transform.rotation = Quaternion.LookRotation(dir.normalized);
-        DOVirtual.DelayedCall(3f, () => { if (!isReleased) ReturnToPool(); });
+        if (delayCall != null && delayCall.IsActive()) delayCall.Kill();
+        delayCall = DOVirtual.DelayedCall(3f, () => { if (!isReleased) ReturnToPool(); });
     }
 
     public void ReturnToPool()

@@ -17,12 +17,16 @@ public class Grenade : SkillObjBase, IDamageable
     {
         isReleased = false;
         this.transform.rotation = Quaternion.LookRotation(dir.normalized);
-        rigid.AddForce(transform.forward * 3f, ForceMode.Impulse);
-        DOVirtual.DelayedCall(1f, () => { if (!isReleased) Explosion(); });
+
+        rigid.velocity = Vector3.zero;
+        rigid.angularVelocity = Vector3.zero;
+
+        rigid.AddForce((transform.forward * 6f) + (Vector3.up * 4f), ForceMode.Impulse);
     }
 
     public void TakeDamage(int dmg)
     {
+        Debug.Log("데미지 받음");
         Dead();
     }
 
@@ -36,5 +40,13 @@ public class Grenade : SkillObjBase, IDamageable
     {
         Debug.Log("뿜!");
         this.ReleaseObject();
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            DOVirtual.DelayedCall(1f, () => { if (!isReleased) Explosion(); });
+        }
     }
 }

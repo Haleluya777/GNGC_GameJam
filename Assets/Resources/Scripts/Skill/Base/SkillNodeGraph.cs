@@ -5,4 +5,8 @@ using XNode;
 public class SkillNodeGraph : NodeGraph
 {
     public SkillNode rootNode;
+    private void OnDestroy()
+    {
+
+    }
 }

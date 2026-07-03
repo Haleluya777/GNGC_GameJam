@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7760a3a9f6e9c324bacf95cd4bcc18c1, type: 3}
   m_Name: Parrying
   m_EditorClassIdentifier: 
-  nodeGraph: {fileID: 11400000, guid: 3b2dd86eac21e4f478343aebb5c68c71, type: 2}
+  nodeGraph: {fileID: 11400000, guid: 57da0bb4f9ead4940b70bc09bb550fcf, type: 2}
   coolDown: 2

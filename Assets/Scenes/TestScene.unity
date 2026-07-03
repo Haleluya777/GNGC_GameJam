@@ -258,7 +258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootSkill: {fileID: 11400000, guid: 43548b4a8a652c14ea9a267821b30e78, type: 2}
   dashSkill: {fileID: 11400000, guid: 51d41b808d48ce543ad38079c1bd589e, type: 2}
-  parryingSkill: {fileID: 0}
+  parryingSkill: {fileID: 11400000, guid: 7f9af34269084a94aa03c814298cc94f, type: 2}
+  grenadeSkill: {fileID: 11400000, guid: 5bc55045cdab69446bdd9b521e1a86a9, type: 2}
   parentObj: {fileID: 1497244912}
 --- !u!1 &420196846
 GameObject:
@@ -654,6 +655,9 @@ MonoBehaviour:
   - objectName: Bullet
     perfab: {fileID: 2604076370881121801, guid: 2473594a4645b8e49825e42a5c6234b4,
       type: 3}
+    count: 5
+  - objectName: Grenade
+    perfab: {fileID: 377141813712073340, guid: 6135e1e07f4fcb647ae4081178b58603, type: 3}
     count: 5
 --- !u!1 &742270914
 GameObject:
@@ -1111,9 +1115,10 @@ GameObject:
   - component: {fileID: 971215651}
   - component: {fileID: 971215655}
   - component: {fileID: 971215656}
+  - component: {fileID: 971215657}
   m_Layer: 7
   m_Name: PlayerChar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1127,7 +1132,7 @@ Transform:
   m_GameObject: {fileID: 971215649}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.239, y: 0.2, z: -2.17}
+  m_LocalPosition: {x: -1.239, y: 0.398, z: -2.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1290,6 +1295,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a5ad809d-72cd-4fe6-8e1b-1411b2f3d0dc
     m_ActionName: PlayerControl/MousePosition[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1095920950}
+        m_TargetAssemblyTypeName: Attack, Assembly-CSharp
+        m_MethodName: Grenade
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 959a6fcf-0209-4e7f-9dd6-0b957dcac344
+    m_ActionName: PlayerControl/Grenade[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: PlayerControl
@@ -1307,16 +1328,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a24c2329fe37b54da087b23de8c01d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 1
   unitData:
     unitType: 1
-    maxHp: 100
-    curHp: 100
+    maxHp: 5
+    curHp: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   cam: {fileID: 545425540}
   mouseScreenPos: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
+  movement: {fileID: 1428268431}
+  isAttacking: 0
+--- !u!95 &971215657
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971215649}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d97d491df089eff42b645f941d6c4a38, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1031960624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,6 +1505,7 @@ MonoBehaviour:
   shootSkill: {fileID: 11400000, guid: 43548b4a8a652c14ea9a267821b30e78, type: 2}
   dashSkill: {fileID: 11400000, guid: 51d41b808d48ce543ad38079c1bd589e, type: 2}
   parryingSkill: {fileID: 11400000, guid: 7f9af34269084a94aa03c814298cc94f, type: 2}
+  grenadeSkill: {fileID: 11400000, guid: 5bc55045cdab69446bdd9b521e1a86a9, type: 2}
   parentObj: {fileID: 971215649}
 --- !u!1 &1104172195
 GameObject:
@@ -1638,6 +1684,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252238478}
   m_CullTransparentMesh: 1
+--- !u!54 &1392998680 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 7304257181060550539, guid: 6135e1e07f4fcb647ae4081178b58603,
+    type: 3}
+  m_PrefabInstance: {fileID: 8917009402841328187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1428268429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,6 +1813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a24c2329fe37b54da087b23de8c01d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   unitData:
     unitType: 0
     maxHp: 100
@@ -1771,6 +1824,8 @@ MonoBehaviour:
   cam: {fileID: 545425540}
   mouseScreenPos: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
+  movement: {fileID: 1031960626}
+  isAttacking: 0
 --- !u!65 &1497244917
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2043,6 +2098,84 @@ Transform:
   - {fileID: 1497244913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8917009402841328187
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 377141813712073340, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_Name
+      value: Grenade
+      objectReference: {fileID: 0}
+    - target: {fileID: 377141813712073340, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815149742390063601, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: rigid
+      value: 
+      objectReference: {fileID: 1392998680}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3428347
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.3802757
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.813179
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314387825588867244, guid: 6135e1e07f4fcb647ae4081178b58603,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6135e1e07f4fcb647ae4081178b58603, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2053,3 +2186,4 @@ SceneRoots:
   - {fileID: 1068296678}
   - {fileID: 878555676}
   - {fileID: 1884704848}
+  - {fileID: 8917009402841328187}
