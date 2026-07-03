@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        Debug.Log("엘렐레");
         if (context.phase == InputActionPhase.Performed)
         {
             dir = context.ReadValue<Vector2>();

@@ -20,15 +20,17 @@ public class Bullet : SkillObjBase
 
     public override void ObjInit(Vector2 dir, int _dmg, int _stunDmg, string _tag, ISkillCaster _caster)
     {
-        //currentDir = 
-    }
-
-    public void DataInitialize()
-    {
-        Invoke("ReturnToPool", 3f);
+        currentDir = dir;
+        Debug.Log(dir);
+        //Invoke("ReturnToPool", 3f);
     }
 
     public void ReturnToPool()
+    {
+        this.ReleaseObject();
+    }
+
+    void OnTriggerEnter(Collider other)
     {
         this.ReleaseObject();
     }

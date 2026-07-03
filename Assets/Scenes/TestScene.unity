@@ -393,6 +393,37 @@ MonoBehaviour:
     perfab: {fileID: 2604076370881121801, guid: 2473594a4645b8e49825e42a5c6234b4,
       type: 3}
     count: 5
+--- !u!1 &702168326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702168327}
+  m_Layer: 0
+  m_Name: dir
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &702168327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702168326}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 971215650}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &742270914
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +602,8 @@ GameObject:
   - component: {fileID: 971215650}
   - component: {fileID: 971215653}
   - component: {fileID: 971215651}
+  - component: {fileID: 971215654}
+  - component: {fileID: 971215655}
   m_Layer: 0
   m_Name: Char
   m_TagString: Untagged
@@ -594,6 +627,7 @@ Transform:
   - {fileID: 547448309}
   - {fileID: 1428268430}
   - {fileID: 1095920948}
+  - {fileID: 702168327}
   m_Father: {fileID: 2096979194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &971215651
@@ -644,6 +678,55 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &971215654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971215649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d971dea1a6094489fef27fe7cf4717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateChild: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  cam: {fileID: 545425540}
+  dir: {x: 0, y: 0, z: 0}
+--- !u!114 &971215655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971215649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 4423d1b11a3279d4e9c50a87b290c046,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: PC
+  m_DefaultActionMap: PlayerControl
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1068296677
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +885,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: df3021c4-41a5-4b43-a280-25bd9e2ddb3e
     m_ActionName: PlayerControl/Dash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a5ad809d-72cd-4fe6-8e1b-1411b2f3d0dc
+    m_ActionName: PlayerControl/MousePosition[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: PlayerControl
@@ -819,6 +906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b475827ecd6fa145a2c28ad03795ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testSkill: {fileID: 11400000, guid: e3aa530893f86ea47888469b544903c1, type: 2}
+  parentObj: {fileID: 971215649}
 --- !u!1 &1123330196
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,8 +1055,12 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: df3021c4-41a5-4b43-a280-25bd9e2ddb3e
     m_ActionName: PlayerControl/Dash[/Keyboard/leftShift]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: PC
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a5ad809d-72cd-4fe6-8e1b-1411b2f3d0dc
+    m_ActionName: PlayerControl/MousePosition[/Mouse/position]
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControl
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -983,7 +1076,7 @@ GameObject:
   - component: {fileID: 2096979193}
   - component: {fileID: 2096979192}
   - component: {fileID: 2096979191}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
