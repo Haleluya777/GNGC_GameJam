@@ -9,9 +9,10 @@ public interface ISkillCaster
 
     void PlayAnimation(string animName);
     int GetAttackPower();
-    Vector2 GetDirection();
+    Vector3 GetDirection();
     Vector2 GetPosition();
     Vector2 GetShootingPos();
+    GameObject GetGameObject();
     string GetTag();
     T GetCom<T>();
 }

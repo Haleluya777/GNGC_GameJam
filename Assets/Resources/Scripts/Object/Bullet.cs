@@ -22,7 +22,7 @@ public class Bullet : SkillObjBase
     {
         currentDir = dir;
         Debug.Log(dir);
-        //Invoke("ReturnToPool", 3f);
+        Invoke("ReturnToPool", 3f);
     }
 
     public void ReturnToPool()
@@ -32,6 +32,6 @@ public class Bullet : SkillObjBase
 
     void OnTriggerEnter(Collider other)
     {
-        this.ReleaseObject();
+        //this.ReleaseObject();
     }
 }
