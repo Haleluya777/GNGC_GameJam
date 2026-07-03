@@ -2,44 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 {
     public SkillModule shootSkill;
     public SkillModule dashSkill;
     public SkillModule parryingSkill;
+    public SkillModule grenadeSkill;
     [SerializeField] private GameObject parentObj;
     private Animator anim;
+    private Unit unit;
 
     void LateUpdate()
     {
-        shootSkill.UpdateCoolDown(Time.deltaTime);
-        dashSkill.UpdateCoolDown(Time.deltaTime);
-        parryingSkill.UpdateCoolDown(Time.deltaTime);
+        ProccessCoolDown();
     }
 
     public void DataInitialize()
     {
         anim = parentObj.GetComponent<Animator>();
+        unit = parentObj.GetComponent<Unit>();
 
         shootSkill = Instantiate(shootSkill);
         dashSkill = Instantiate(dashSkill);
         parryingSkill = Instantiate(parryingSkill);
+        grenadeSkill = Instantiate(grenadeSkill);
 
         shootSkill.InitSkill();
         dashSkill.InitSkill();
         parryingSkill.InitSkill();
+        grenadeSkill.InitSkill();
     }
 
     public void ProccessCoolDown()
     {
-
+        shootSkill.UpdateCoolDown(Time.deltaTime);
+        dashSkill.UpdateCoolDown(Time.deltaTime);
+        parryingSkill.UpdateCoolDown(Time.deltaTime);
+        grenadeSkill.UpdateCoolDown(Time.deltaTime);
     }
 
     public void PerformAttack(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            if (shootSkill == null)
+            {
+                Debug.Log("이 스킬은 배우지 않음");
+                return;
+            }
             shootSkill.UseSKill(this);
         }
     }
@@ -48,6 +60,14 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            if (parryingSkill == null)
+            {
+                Debug.Log("스킬 없다.");
+                return;
+            }
+
+            unit.isAttacking = true;
+            DOVirtual.DelayedCall(.5f, () => unit.isAttacking = false);
             parryingSkill.UseSKill(this);
         }
     }
@@ -56,7 +76,25 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            if (dashSkill == null)
+            {
+                Debug.Log("스킬 없다.");
+                return;
+            }
             dashSkill.UseSKill(this);
+        }
+    }
+
+    public void Grenade(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            if (grenadeSkill == null)
+            {
+                Debug.Log("스킬 없다.");
+                return;
+            }
+            grenadeSkill.UseSKill(this);
         }
     }
 
@@ -92,7 +130,7 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 
     public string GetTag()
     {
-        return "";
+        return parentObj.tag;
     }
 
     public T GetCom<T>() => parentObj.GetComponentInChildren<T>();

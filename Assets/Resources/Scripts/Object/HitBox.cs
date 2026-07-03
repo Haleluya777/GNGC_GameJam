@@ -23,6 +23,17 @@ public class HitBox : PoolAble
 
     void OnTriggerEnter(Collider other)
     {
-        if (caster == null || other.gameObject.tag == caster.GetGameObject().tag) return;
+        if (other.gameObject.layer == 10) //히트박스가 총알에 맞을 때.
+        {
+            if (other.gameObject.tag != this.gameObject.tag) //근데 내 총알이 아닐 때.
+            {
+                //무지개반사.
+            }
+        }
+        else //히트박스가 적에게 맞을 때.
+        {
+            other.TryGetComponent<IDamageable>(out var damageable);
+            damageable.TakeDamage(2);
+        }
     }
 }

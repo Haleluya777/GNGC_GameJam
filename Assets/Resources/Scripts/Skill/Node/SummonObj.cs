@@ -17,8 +17,8 @@ public class SummonObj : SkillNode
         var dmg = (int)(weight * caster.GetAttackPower());
         var obj = LocalGameManager.instance.objectPoolManager.poolDic["Bullet"].GetGo(objName);
 
-        obj.transform.SetParent(caster.GetGameObject().transform);
-        obj.transform.localPosition = Vector3.zero;
+        //obj.transform.SetParent(caster.GetGameObject().transform);
+        obj.transform.position = caster.GetGameObject().transform.position;
 
         obj.GetComponent<SkillObjBase>().ObjInit(caster.GetDirection(), dmg, 0, caster.GetTag(), caster);
     }

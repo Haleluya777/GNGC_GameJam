@@ -14,6 +14,9 @@ public struct UnitData
 
 public class Unit : MonoBehaviour, IDamageable
 {
+    public enum UnitState { Moving, Idle }
+
+    public UnitState state;
     public UnitData unitData;
     public Dictionary<string, StatusEffectBase> activeEffect = new Dictionary<string, StatusEffectBase>(); //유닛에 진행중인 상태 이상들. 버프/디버프 등
     public Dictionary<string, Coroutine> activeEffectCoroutines = new Dictionary<string, Coroutine>(); //상태이상 지속을 돕는 코루틴.
@@ -22,6 +25,10 @@ public class Unit : MonoBehaviour, IDamageable
     [SerializeField] Camera cam;
     public Vector2 mouseScreenPos;
     public Vector3 dir;
+
+    public Movement movement;
+
+    public bool isAttacking;
 
     void Awake()
     {
@@ -46,6 +53,7 @@ public class Unit : MonoBehaviour, IDamageable
         if (unitData.unitType == PublicEnums.UnitType.Player)
         {
             Ray ray = cam.ScreenPointToRay(mouseScreenPos);
+            if (!isAttacking) transform.localScale = dir.x >= 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
             {
                 Vector3 targetPoint = hit.point;
@@ -53,9 +61,19 @@ public class Unit : MonoBehaviour, IDamageable
                 dir.y = 0;
             }
         }
+
+        SetCurrentState();
+    }
+
+    public void SetCurrentState()
+    {
+        if (movement.dir == Vector2.zero)
+        {
+            state = UnitState.Idle;
+        }
         else
         {
-
+            state = UnitState.Moving;
         }
     }
 
