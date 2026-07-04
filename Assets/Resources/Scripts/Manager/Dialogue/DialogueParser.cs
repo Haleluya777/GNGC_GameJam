@@ -51,7 +51,7 @@ public class DialogueParser : MonoBehaviour
 
             parsedLines.Add(parsedLine);
         }
-
+        Debug.Log(parsedLines.Count);
         return parsedLines;
     }
 }

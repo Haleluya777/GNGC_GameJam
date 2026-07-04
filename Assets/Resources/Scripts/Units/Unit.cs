@@ -16,7 +16,7 @@ public struct UnitData
 
 public class Unit : MonoBehaviour, IDamageable
 {
-    public enum UnitState { Moving, Idle }
+    public enum UnitState { Moving, Idle, Attacking }
 
     public UnitState state;
     public UnitData unitData;
@@ -25,6 +25,7 @@ public class Unit : MonoBehaviour, IDamageable
 
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Camera cam;
+    [SerializeField] private Animator anim;
     public Vector2 mouseScreenPos;
     public Vector3 dir;
     public Vector3 mouseTargetPos;
@@ -80,18 +81,20 @@ public class Unit : MonoBehaviour, IDamageable
             time = 0;
         }
 
-        SetCurrentState();
+        SetStateAnim();
     }
 
-    public void SetCurrentState()
+    public void SetStateAnim()
     {
-        if (movement.dir == Vector2.zero)
+        switch (state)
         {
-            state = UnitState.Idle;
-        }
-        else
-        {
-            state = UnitState.Moving;
+            case UnitState.Idle:
+                anim.CrossFade("Player Animation", 0f);
+                break;
+
+            case UnitState.Moving:
+                anim.CrossFade("Player_Walking", 0f);
+                break;
         }
     }
 

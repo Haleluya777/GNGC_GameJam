@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ShootingModule
   m_EditorClassIdentifier: 
   nodeGraph: {fileID: 11400000, guid: e3aa530893f86ea47888469b544903c1, type: 2}
-  coolDown: 0.25
+  coolDown: 0.2
+  attackTime: 0.2

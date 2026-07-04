@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Text.RegularExpressions;
+using KoreanTyper;
 
 public class DialogueRunner : MonoBehaviour
 {
@@ -25,16 +26,14 @@ public class DialogueRunner : MonoBehaviour
     void Start()
     {
         currentLineNum = 0;
+        scriptLine = parser.Parse(DialogueFile.ToString());
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            if (currentLineNum != 0)
-            {
-                ProccessNextLine();
-            }
+            ProccessNextLine();
         }
     }
 
@@ -170,7 +169,54 @@ public class DialogueRunner : MonoBehaviour
 
         /*Debug.Log(int.Parse(line.Actor.Split('_')[0]));*/
 
-        //StartCoroutine(TypingTxt(line.Detail)); //대사 출력.
+        StartCoroutine(TypingTxt(line.Detail)); //대사 출력.
         //GameManager.instance.dataManager.dialogueLog.Add(line); //대화 로그에 저장.
+    }
+
+    private IEnumerator TypingTxt(string args)
+    {
+        string pattern = @"\((\d+(\.\d+)?)\)";
+        MatchCollection matches = Regex.Matches(args, pattern);
+
+        // 태그가 제거된 실제 출력될 문자열
+        string fullText = Regex.Replace(args, pattern, "");
+
+        int currentStep = 0;
+        int lastProcessedIndex = 0;
+        int totalTypingLength = fullText.GetTypingLength();
+
+        foreach (Match match in matches)
+        {
+            // 태그 직전까지의 텍스트 길이를 통해 타이핑 스텝 계산
+            string textBeforeTag = args.Substring(lastProcessedIndex, match.Index - lastProcessedIndex);
+            int stepsForThisSegment = textBeforeTag.GetTypingLength();
+
+            for (int i = 0; i < stepsForThisSegment; i++)
+            {
+                currentStep++;
+                DialogueText.text = fullText.Typing(currentStep);
+                yield return new WaitForSeconds(.15f);
+            }
+
+            // 딜레이 적용
+            if (float.TryParse(match.Groups[1].Value, out float delay))
+            {
+                yield return new WaitForSeconds(delay);
+            }
+
+            lastProcessedIndex = match.Index + match.Length;
+        }
+
+        // 남은 부분 타이핑
+        while (currentStep < totalTypingLength)
+        {
+            currentStep++;
+            DialogueText.text = fullText.Typing(currentStep);
+            yield return new WaitForSeconds(.15f);
+        }
+
+        DialogueText.text = fullText;
+        yield return null;
+        //currentLineNum++;
     }
 }

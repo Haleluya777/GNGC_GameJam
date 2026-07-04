@@ -391,6 +391,12 @@ MonoBehaviour:
   parentObj: {fileID: 1497244912}
   behaviorTree: {fileID: 11400000, guid: f953a1911c2eccf4f96a45649aa0dd4a, type: 2}
   runningBT: 0
+--- !u!95 &426462405 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4730129867922666285, guid: 9a7929befb7c12d4ca683f4a497625ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1820130132}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &443406116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,6 +1633,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   cam: {fileID: 545425540}
+  anim: {fileID: 426462405}
   mouseScreenPos: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
   mouseTargetPos: {x: 0, y: 0, z: 0}
@@ -1680,6 +1687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 1497244914}
+  unit: {fileID: 0}
   dir: {x: 0, y: 0}
 --- !u!1 &1068296677
 GameObject:
@@ -2208,6 +2216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 971215651}
+  unit: {fileID: 971215656}
   dir: {x: 0, y: 0}
 --- !u!1 &1497244912
 GameObject:
@@ -2296,6 +2305,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   cam: {fileID: 545425540}
+  anim: {fileID: 0}
   mouseScreenPos: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
   mouseTargetPos: {x: 0, y: 0, z: 0}

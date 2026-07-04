@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using DG.Tweening;
 
 [CreateAssetMenu(fileName = "SkillModule")]
 public class SkillModule : ScriptableObject
@@ -11,7 +11,9 @@ public class SkillModule : ScriptableObject
 
     [SerializeField] private SkillNodeGraph nodeGraph;
     [SerializeField] private float coolDown;
+    [SerializeField] private float attackTime;
     private float remainingCoolDown;
+    private Unit unit;
 
     public bool OnCoolDown => remainingCoolDown > 0;
     public float RemainingCoolDown => remainingCoolDown;
@@ -31,7 +33,7 @@ public class SkillModule : ScriptableObject
 
     public bool UseSKill(ISkillCaster caster)
     {
-        Unit unit = caster.GetCom<Unit>();
+        unit = caster.GetCom<Unit>();
         if (OnCoolDown || !blackBoard.Get<bool>("Condition"))
         {
             Debug.Log("쿨타임 중.");
@@ -40,6 +42,10 @@ public class SkillModule : ScriptableObject
 
         nodeGraph.rootNode.Evaluate(caster);
         remainingCoolDown = coolDown;
+        unit.state = Unit.UnitState.Attacking;
+
+        DOVirtual.DelayedCall(attackTime, () => unit.state = Unit.UnitState.Idle);
+
         return true;
     }
 
