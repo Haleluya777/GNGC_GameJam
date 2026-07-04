@@ -58,7 +58,7 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 
     public void Melee(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && unit.useKnife)
         {
             if (parryingSkill == null)
             {
@@ -74,7 +74,7 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && unit.useDash)
         {
             if (dashSkill == null)
             {

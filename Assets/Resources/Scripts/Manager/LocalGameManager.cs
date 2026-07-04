@@ -9,6 +9,10 @@ public class LocalGameManager : MonoBehaviour
     public CoroutineRunner coroutineRunner;
     public ObjectPoolManager objectPoolManager;
     public UnitManager unitManager;
+    public DialogueFuncManager dialogueFuncManager;
+
+    public bool learnKnife;
+    public bool learnDash;
 
     void Awake()
     {
@@ -26,5 +30,20 @@ public class LocalGameManager : MonoBehaviour
         {
             child.DataInitialize();
         }
+
+        learnKnife = false;
+        learnDash = false;
+    }
+
+    public void KnifeLearning()
+    {
+        unitManager.playerUnit.useKnife = true;
+        learnKnife = true;
+    }
+
+    public void DashLearning()
+    {
+        unitManager.playerUnit.useDash = true;
+        learnDash = true;
     }
 }

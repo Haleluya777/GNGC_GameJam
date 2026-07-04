@@ -80,7 +80,7 @@ MonoBehaviour:
   parent: {fileID: 0}
   childs: []
   duration: 0.2
-  size: {x: 0.5, y: 0.5, z: 0.75}
+  size: {x: 0.5, y: 0.3, z: 0.75}
 --- !u!114 &9022166699307735552
 MonoBehaviour:
   m_ObjectHideFlags: 0

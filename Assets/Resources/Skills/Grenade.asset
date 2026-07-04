@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skill Root
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -168, y: 8}
+  position: {x: -184, y: 24}
   ports:
     keys:
     - childs
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: Summon Grenade
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 120, y: 120}
+  position: {x: 104, y: 120}
   ports:
     keys:
     - parent

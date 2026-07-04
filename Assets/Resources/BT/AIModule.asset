@@ -286,7 +286,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: parent 0
-        node: {fileID: 5015923758590559624}
+        node: {fileID: 7142512426157492445}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -328,10 +328,7 @@ MonoBehaviour:
       _node: {fileID: 5015923758590559624}
       _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: childs 1
-        node: {fileID: 4760820648718764371}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -505,7 +502,10 @@ MonoBehaviour:
       _node: {fileID: 7142512426157492445}
       _typeQualifiedName: BTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: childs 1
+        node: {fileID: 4760820648718764371}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0

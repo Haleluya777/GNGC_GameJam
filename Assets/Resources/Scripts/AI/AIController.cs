@@ -70,6 +70,11 @@ public class AIController : MonoBehaviour, IDataInitializable
         rigid = parentObj.GetComponent<Rigidbody>();
         anim = parentObj.GetComponentInChildren<Animator>();
 
+        var unit = parentObj.GetComponent<Unit>();
+
+        if (LocalGameManager.instance.learnKnife) unit.useKnife = true;
+        if (LocalGameManager.instance.learnDash) unit.useDash = true;
+
         runningBT = true;
     }
 

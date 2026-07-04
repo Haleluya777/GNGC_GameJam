@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ public struct UnitData
     public PublicEnums.UnitType unitType;
     public int maxHp;
     public int curHp;
+    public int grenadeCount;
 }
 
 public class Unit : MonoBehaviour, IDamageable
@@ -30,6 +32,10 @@ public class Unit : MonoBehaviour, IDamageable
     public Movement movement;
 
     public bool isAttacking;
+    [SerializeField] private float time;
+
+    public bool useKnife;
+    public bool useDash;
 
     void Awake()
     {
@@ -37,6 +43,9 @@ public class Unit : MonoBehaviour, IDamageable
         {
             child.DataInitialize();
         }
+
+        useKnife = false;
+        useDash = false;
     }
 
     public void TakeDamage(int dmg)
@@ -62,6 +71,13 @@ public class Unit : MonoBehaviour, IDamageable
                 dir = mouseTargetPos - this.gameObject.transform.position;
                 dir.y = 0;
             }
+        }
+
+        time += Time.deltaTime;
+        if (time >= 5f && unitData.grenadeCount < 2)
+        {
+            unitData.grenadeCount++;
+            time = 0;
         }
 
         SetCurrentState();
