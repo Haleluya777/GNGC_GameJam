@@ -1198,7 +1198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &811432554
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1672,8 +1672,8 @@ MonoBehaviour:
   dialogueFuncManager: {fileID: 1196974004}
   timeLineManager: {fileID: 1727118272}
   playerInput: {fileID: 971215655}
-  learnKnife: 0
-  learnDash: 0
+  learnKnife: 1
+  learnDash: 1
 --- !u!4 &1095920948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8975214734213021404, guid: 7fff7df201db2794cadc39877cd2a1f7,
@@ -2109,6 +2109,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5436601263854638200}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1497244914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9062477774481012008, guid: c0a97f928c470cc46937bc013da75545,
+    type: 3}
+  m_PrefabInstance: {fileID: 5436601263854638200}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497244912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a24c2329fe37b54da087b23de8c01d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1598003168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,6 +2789,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1234538800115759682, guid: c0a97f928c470cc46937bc013da75545,
+        type: 3}
+      propertyPath: unit
+      value: 
+      objectReference: {fileID: 1497244914}
     - target: {fileID: 2083896877709858325, guid: c0a97f928c470cc46937bc013da75545,
         type: 3}
       propertyPath: m_Layer
@@ -2828,6 +2845,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: db89baec2a0442d40b2bed3f3e70c0ca,
         type: 2}
+    - target: {fileID: 6388329926217690846, guid: c0a97f928c470cc46937bc013da75545,
+        type: 3}
+      propertyPath: parryingSkill
+      value: 
+      objectReference: {fileID: 11400000, guid: 6817f78a27953bb4b91957bae7560e98,
+        type: 2}
     - target: {fileID: 6702043816076704993, guid: c0a97f928c470cc46937bc013da75545,
         type: 3}
       propertyPath: m_IsTrigger
@@ -2867,6 +2890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718031347414363425, guid: c0a97f928c470cc46937bc013da75545,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8718031347414363425, guid: c0a97f928c470cc46937bc013da75545,
         type: 3}

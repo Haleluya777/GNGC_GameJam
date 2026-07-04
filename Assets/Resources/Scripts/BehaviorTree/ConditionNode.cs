@@ -65,7 +65,7 @@ public class ConditionNode : BTNode
             Debug.LogError($"ConditionNode Error during evaluation: {e.Message}");
             return NodeState.Failure;
         }
-
+        Debug.Log(result);
         return result ? NodeState.Success : NodeState.Failure;
     }
 

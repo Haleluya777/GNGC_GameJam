@@ -62,7 +62,6 @@ public class AIController : MonoBehaviour, IDataInitializable
 
     public void DataInitialize()
     {
-        Debug.Log("듀아아");
         runTimeTree = behaviorTree.Copy() as BehaviorTreeGraph;
         runTimeTree.blackboard = new BlackBoard();
         root = runTimeTree.rootNode;
@@ -72,8 +71,8 @@ public class AIController : MonoBehaviour, IDataInitializable
 
         var unit = parentObj.GetComponent<Unit>();
 
-        if (LocalGameManager.instance.learnKnife) unit.useKnife = true;
-        if (LocalGameManager.instance.learnDash) unit.useDash = true;
+        //if (LocalGameManager.instance.learnKnife) unit.useKnife = true;
+        //if (LocalGameManager.instance.learnDash) unit.useDash = true;
 
         runningBT = true;
     }
