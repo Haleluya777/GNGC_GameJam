@@ -24,6 +24,8 @@ public class CloseGap : BTNode
 
     public override NodeState Evaluate(AIController controller)
     {
+        if (!LocalGameManager.instance.learnDash) return NodeState.Success;
+
         if (!isInit) Initialize();
         caster = controller.ParentObj.GetComponentInChildren<ISkillCaster>();
         Attack attack = caster.GetCom<Attack>();

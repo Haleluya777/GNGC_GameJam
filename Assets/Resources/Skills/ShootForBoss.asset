@@ -1,23 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef15021f1e7b0741aff43e8f38e60e9, type: 3}
-  m_Name: Parrying
-  m_EditorClassIdentifier: 
-  nodes:
-  - {fileID: 9022166699307735552}
-  - {fileID: 7918867328819368882}
-  - {fileID: 6946836605300087670}
-  rootNode: {fileID: 9022166699307735552}
---- !u!114 &6946836605300087670
+--- !u!114 &-1953667216624592800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,14 +13,14 @@ MonoBehaviour:
   m_Name: Play Animation
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 136, y: 168}
+  position: {x: -232, y: 808}
   ports:
     keys:
     - parent
     - parent 0
     values:
     - _fieldName: parent
-      _node: {fileID: 6946836605300087670}
+      _node: {fileID: -1953667216624592800}
       _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections: []
@@ -46,20 +29,20 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: parent 0
-      _node: {fileID: 6946836605300087670}
+      _node: {fileID: -1953667216624592800}
       _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
       - fieldName: childs 1
-        node: {fileID: 9022166699307735552}
+        node: {fileID: 1413338328368392020}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
   parent: {fileID: 0}
-  animName: Player_Attack
---- !u!114 &7918867328819368882
+  animName: Player_Mirror_Shoot
+--- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,39 +51,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78c04c0625cb60944b3b80a7c76d52c7, type: 3}
-  m_Name: Set Hit Box
+  m_Script: {fileID: 11500000, guid: bef15021f1e7b0741aff43e8f38e60e9, type: 3}
+  m_Name: ShootForBoss
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 1413338328368392020}
+  - {fileID: -1953667216624592800}
+  - {fileID: 36107941107533231}
+  rootNode: {fileID: 1413338328368392020}
+--- !u!114 &36107941107533231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe945f0a819d2434682e8daa705a2619, type: 3}
+  m_Name: Triple Shooting
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 408, y: 8}
+  position: {x: 8, y: 600}
   ports:
     keys:
-    - childs
-    - size
     - parent
     - parent 0
     values:
-    - _fieldName: childs
-      _node: {fileID: 7918867328819368882}
-      _typeQualifiedName: System.Collections.Generic.List`1[[SkillNode, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: size
-      _node: {fileID: 7918867328819368882}
-      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
     - _fieldName: parent
-      _node: {fileID: 7918867328819368882}
+      _node: {fileID: 36107941107533231}
       _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections: []
@@ -109,23 +88,19 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: parent 0
-      _node: {fileID: 7918867328819368882}
+      _node: {fileID: 36107941107533231}
       _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
       - fieldName: childs 0
-        node: {fileID: 9022166699307735552}
+        node: {fileID: 1413338328368392020}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
   parent: {fileID: 0}
-  childs: []
-  duration: 0.2
-  pos: {x: 0.75, y: 0.6, z: 0.3}
-  size: {x: 1.5, y: 1, z: 1.5}
---- !u!114 &9022166699307735552
+--- !u!114 &1413338328368392020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +113,7 @@ MonoBehaviour:
   m_Name: Skill Root
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 136, y: -56}
+  position: {x: -236.38646, y: 596.27185}
   ports:
     keys:
     - childs
@@ -147,7 +122,7 @@ MonoBehaviour:
     - childs 1
     values:
     - _fieldName: childs
-      _node: {fileID: 9022166699307735552}
+      _node: {fileID: 1413338328368392020}
       _typeQualifiedName: System.Collections.Generic.List`1[[SkillNode, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
@@ -157,7 +132,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: parent
-      _node: {fileID: 9022166699307735552}
+      _node: {fileID: 1413338328368392020}
       _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections: []
@@ -166,24 +141,24 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: childs 0
-      _node: {fileID: 9022166699307735552}
+      _node: {fileID: 1413338328368392020}
       _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
       - fieldName: parent 0
-        node: {fileID: 7918867328819368882}
+        node: {fileID: 36107941107533231}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: childs 1
-      _node: {fileID: 9022166699307735552}
+      _node: {fileID: 1413338328368392020}
       _typeQualifiedName: SkillNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
       - fieldName: parent 0
-        node: {fileID: 6946836605300087670}
+        node: {fileID: -1953667216624592800}
         reroutePoints: []
       _direction: 1
       _connectionType: 0

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7760a3a9f6e9c324bacf95cd4bcc18c1, type: 3}
-  m_Name: ParryingForEnemy
+  m_Name: TripleShoot
   m_EditorClassIdentifier: 
-  nodeGraph: {fileID: 11400000, guid: 401cf102e34f39a4cb57f45bc91111f8, type: 2}
-  coolDown: 0.5
-  attackTime: 0.3
+  nodeGraph: {fileID: 11400000, guid: 3da9d3453a1c56a4993a8e57e30425fd, type: 2}
+  coolDown: 0
+  attackTime: 0

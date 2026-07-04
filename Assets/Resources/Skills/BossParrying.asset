@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bef15021f1e7b0741aff43e8f38e60e9, type: 3}
-  m_Name: ParryingForEnemy
+  m_Name: BossParrying
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 1074477291092336775}
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: Set Hit Box
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 424, y: -152}
+  position: {x: 312, y: -120}
   ports:
     keys:
     - childs
@@ -160,8 +160,8 @@ MonoBehaviour:
   childs:
   - {fileID: 0}
   duration: 0.2
-  pos: {x: 0.75, y: 0.6, z: 0.3}
-  size: {x: -1.5, y: 1, z: 1.5}
+  pos: {x: -0.75, y: 0.6, z: 0.3}
+  size: {x: 1.5, y: 1, z: 1.5}
 --- !u!114 &8443932349175995666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,4 +203,4 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   parent: {fileID: 0}
-  animName: Robot_Enemy Attack2
+  animName: Player_Mirror_Attack

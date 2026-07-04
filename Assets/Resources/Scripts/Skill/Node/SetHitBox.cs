@@ -9,6 +9,7 @@ public class SetHitBox : SkillNode
 
     [Header("판정 지속 시간")]
     public float duration;
+    public Vector3 pos;
 
     [Input] public Vector3 size;
 
@@ -28,7 +29,7 @@ public class SetHitBox : SkillNode
         hitBox.tag = caster.GetGameObject().tag;
 
         hitBox.transform.localScale = size;
-        hitBox.transform.localPosition = new Vector3(.75f, .5f, .3f);
+        hitBox.transform.localPosition = pos;
 
         hitBoxCom.Initialize(totalDmg, caster, duration);
 

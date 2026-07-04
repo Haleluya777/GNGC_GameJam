@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ShootingForEnemy
   m_EditorClassIdentifier: 
   nodeGraph: {fileID: 11400000, guid: fc358d57761b96845a998ffa3bc6003d, type: 2}
-  coolDown: 1
+  coolDown: 0.5
   attackTime: 1

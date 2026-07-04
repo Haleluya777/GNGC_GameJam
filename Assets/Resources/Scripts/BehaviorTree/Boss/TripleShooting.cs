@@ -19,6 +19,7 @@ public class TripleShooting : SkillNode
         {
             var obj = LocalGameManager.instance.objectPoolManager.poolDic["Bullet"].GetGo("Bullet");
             obj.transform.position = caster.GetShootObj().transform.position;
+            obj.GetComponent<SkillObjBase>().ObjInit(caster.GetDirection(), caster.GetTag(), caster);
             yield return wait;
         }
     }
