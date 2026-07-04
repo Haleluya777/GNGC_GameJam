@@ -113,6 +113,11 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
         return parentObj.GetComponent<Unit>().dir;
     }
 
+    public Vector3 GetMousePosition()
+    {
+        return parentObj.GetComponent<Unit>().mouseTargetPos;
+    }
+
     public GameObject GetGameObject()
     {
         return parentObj;

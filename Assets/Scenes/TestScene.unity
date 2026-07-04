@@ -259,7 +259,7 @@ MonoBehaviour:
   shootSkill: {fileID: 11400000, guid: 43548b4a8a652c14ea9a267821b30e78, type: 2}
   dashSkill: {fileID: 11400000, guid: 51d41b808d48ce543ad38079c1bd589e, type: 2}
   parryingSkill: {fileID: 11400000, guid: 7f9af34269084a94aa03c814298cc94f, type: 2}
-  grenadeSkill: {fileID: 11400000, guid: 5bc55045cdab69446bdd9b521e1a86a9, type: 2}
+  grenadeSkill: {fileID: 11400000, guid: df26557019a458d409b37978c30e0c5b, type: 2}
   parentObj: {fileID: 1497244912}
 --- !u!1 &420196846
 GameObject:
@@ -1332,13 +1332,14 @@ MonoBehaviour:
   unitData:
     unitType: 1
     maxHp: 5
-    curHp: 5
+    curHp: 100
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   cam: {fileID: 545425540}
   mouseScreenPos: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
+  mouseTargetPos: {x: 0, y: 0, z: 0}
   movement: {fileID: 1428268431}
   isAttacking: 0
 --- !u!95 &971215657
@@ -1754,7 +1755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1497244913
 Transform:
   m_ObjectHideFlags: 0
@@ -1816,14 +1817,15 @@ MonoBehaviour:
   state: 0
   unitData:
     unitType: 0
-    maxHp: 100
-    curHp: 100
+    maxHp: 5
+    curHp: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   cam: {fileID: 545425540}
   mouseScreenPos: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
+  mouseTargetPos: {x: 0, y: 0, z: 0}
   movement: {fileID: 1031960626}
   isAttacking: 0
 --- !u!65 &1497244917

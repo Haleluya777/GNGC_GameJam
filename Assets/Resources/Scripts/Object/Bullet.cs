@@ -20,7 +20,7 @@ public class Bullet : SkillObjBase
         rigid.MovePosition(rigid.position + transform.forward * Time.deltaTime * 15f);
     }
 
-    public override void ObjInit(Vector3 dir, int _dmg, int _stunDmg, string _tag, ISkillCaster _caster)
+    public override void ObjInit(Vector3 dir, string _tag, ISkillCaster _caster)
     {
         isReleased = false;
         this.gameObject.tag = _tag;
@@ -44,6 +44,5 @@ public class Bullet : SkillObjBase
             isReleased = true;
             ReturnToPool();
         }
-        //
     }
 }

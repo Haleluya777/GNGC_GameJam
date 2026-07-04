@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateNodeMenu("BT/ShootingNode")]
-public class ShootingNode : BTNode
+[CreateNodeMenu("BT/ThrowGrenade")]
+public class ThrowGrenade : BTNode
 {
     private ISkillCaster caster;
 
     public override NodeState Evaluate(AIController controller)
     {
         caster = controller.ParentObj.GetComponentInChildren<ISkillCaster>();
-        //shootingModule.rootNode.Evaluate(controller.ParentObj.GetComponentInChildren<ISkillCaster>());
-        caster.GetCom<Attack>().shootSkill.UseSKill(caster);
+        caster.GetCom<Attack>().grenadeSkill.UseSKill(caster);
         return NodeState.Success;
     }
 }

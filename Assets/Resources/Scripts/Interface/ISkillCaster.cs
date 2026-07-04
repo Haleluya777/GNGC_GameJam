@@ -10,6 +10,7 @@ public interface ISkillCaster
     void PlayAnimation(string animName);
     int GetAttackPower();
     Vector3 GetDirection();
+    Vector3 GetMousePosition();
     Vector2 GetPosition();
     Vector2 GetShootingPos();
     GameObject GetGameObject();

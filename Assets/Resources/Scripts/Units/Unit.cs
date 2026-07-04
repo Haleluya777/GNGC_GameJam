@@ -25,6 +25,7 @@ public class Unit : MonoBehaviour, IDamageable
     [SerializeField] Camera cam;
     public Vector2 mouseScreenPos;
     public Vector3 dir;
+    public Vector3 mouseTargetPos;
 
     public Movement movement;
 
@@ -57,8 +58,8 @@ public class Unit : MonoBehaviour, IDamageable
             if (!isAttacking) transform.localScale = dir.x >= 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
             {
-                Vector3 targetPoint = hit.point;
-                dir = targetPoint - this.gameObject.transform.position;
+                mouseTargetPos = hit.point;
+                dir = mouseTargetPos - this.gameObject.transform.position;
                 dir.y = 0;
             }
         }
