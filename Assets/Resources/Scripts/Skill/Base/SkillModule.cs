@@ -26,7 +26,6 @@ public class SkillModule : ScriptableObject
     public void InitSkill()
     {
         blackBoard = new BlackBoard();
-        blackBoard.Set("Condition", true);
 
         nodeGraph = Instantiate(nodeGraph);
     }
@@ -34,13 +33,15 @@ public class SkillModule : ScriptableObject
     public bool UseSKill(ISkillCaster caster)
     {
         unit = caster.GetCom<Unit>();
-        if (OnCoolDown || !blackBoard.Get<bool>("Condition"))
+        if (OnCoolDown)
         {
+            Debug.Log($"남은 쿨타임 : {remainingCoolDown}");
             Debug.Log("쿨타임 중.");
             return false;
         }
 
         nodeGraph.rootNode.Evaluate(caster);
+        //remainingCoolDown = 0f;
         remainingCoolDown = coolDown;
         unit.state = Unit.UnitState.Attacking;
 

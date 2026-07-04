@@ -7,12 +7,13 @@ public class UnitMove : SkillNode
 {
     [Output(dynamicPortList = true)] public List<SkillNode> childs;
 
-
     public float dashDistance = 5f;
     public float dashDuration = .2f;
     public Ease dashEase = Ease.Linear;
 
     public LayerMask wall;
+
+    public bool reverse;
 
     public override void Evaluate(ISkillCaster caster)
     {
@@ -26,6 +27,8 @@ public class UnitMove : SkillNode
         Vector3 dashDirection = new Vector3(moveDir.x, 0, moveDir.y).normalized;
         Vector3 startPos = rigid.position;
         Vector3 targetPosition = startPos + dashDirection * dashDistance;
+
+        if (reverse) targetPosition *= -1;
 
         Vector3 virtualPos = startPos;
         Sequence dashSequence = DOTween.Sequence();

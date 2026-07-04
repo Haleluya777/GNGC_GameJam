@@ -10,7 +10,6 @@ public class SelectorNode : BTNode
 
     public override NodeState Evaluate(AIController controller)
     {
-        Debug.Log("할렐루야");
         foreach (var port in DynamicOutputs) //자식 아웃풋 포트에 연결되어 있는 모든 노드들을 검사.
         {
             if (port.IsConnected)

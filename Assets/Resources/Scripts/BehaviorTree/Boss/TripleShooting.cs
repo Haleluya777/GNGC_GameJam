@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TripleShooting : MonoBehaviour
+[CreateNodeMenu("Skill/TripleShoot")]
+public class TripleShooting : SkillNode
 {
-    // Start is called before the first frame update
-    void Start()
+    private WaitForSeconds wait = new WaitForSeconds(.25f);
+
+    public override void Evaluate(ISkillCaster caster)
     {
-        
+        LocalGameManager.instance.coroutineRunner.StartCoroutine(Triple(caster));
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator Triple(ISkillCaster caster)
     {
-        
+        for (int i = 0; i < 3; i++)
+        {
+            var obj = LocalGameManager.instance.objectPoolManager.poolDic["Bullet"].GetGo("Bullet");
+            obj.transform.position = caster.GetShootObj().transform.position;
+            yield return wait;
+        }
     }
 }

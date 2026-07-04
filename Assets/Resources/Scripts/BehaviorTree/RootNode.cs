@@ -10,7 +10,6 @@ public class RootNode : BTNode
 
     public override NodeState Evaluate(AIController controller)
     {
-        Debug.Log("아듀");
         return selectorNode.Evaluate(controller);
     }
 }
