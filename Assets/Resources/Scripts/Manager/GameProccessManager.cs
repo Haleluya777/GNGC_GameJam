@@ -22,6 +22,7 @@ public class GameProccessManager : MonoBehaviour, IDataInitializable
 
     public void GameProccess(int proccess)
     {
+        LocalGameManager.instance.unitManager.playerUnit.unitData.curHp = LocalGameManager.instance.unitManager.playerUnit.unitData.maxHp;
         switch (proccess)
         {
             case 0:

@@ -40,7 +40,7 @@ public class DialogueRunner : MonoBehaviour, IDataInitializable
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ProccessNextLine();
             //LocalGameManager.instance.DisableAllInput();

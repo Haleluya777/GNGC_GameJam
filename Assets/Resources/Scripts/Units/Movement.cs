@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     public void PerformMove()
     {
         Vector3 movement = new Vector3(dir.x, 0f, dir.y);
-        rigid.MovePosition(rigid.position + movement * 5f * Time.deltaTime);
+        rigid.MovePosition(rigid.position + movement * 10f * Time.deltaTime);
         //rigid.velocity = Vector3.forward * Time.deltaTime * 5f;
     }
 

@@ -39,6 +39,7 @@ public class LocalGameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        Cursor.visible = true;
         soundManager = GetComponent<SoundManager>(); // 사운드 매니저 컴포넌트 가져오기
         killAll += unitManager.DestroyAllEnemies; // 이벤트에 적 파괴 메소드 등록
 

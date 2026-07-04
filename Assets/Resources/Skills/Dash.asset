@@ -53,12 +53,13 @@ MonoBehaviour:
       _dynamic: 1
   parent: {fileID: 0}
   childs: []
-  dashDistance: 2
+  dashDistance: 5
   dashDuration: 0.1
   dashEase: 1
   wall:
     serializedVersion: 2
     m_Bits: 0
+  reverse: 0
 --- !u!114 &-215071582275510924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +158,7 @@ MonoBehaviour:
   m_Name: Play Animation
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 88, y: 168}
+  position: {x: 88, y: 200}
   ports:
     keys:
     - parent

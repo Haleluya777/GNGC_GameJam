@@ -63,8 +63,8 @@ public class UnitManager : MonoBehaviour, IDataInitializable
                 {
                     var obj = Instantiate(enemyList[0]);
                     var obj2 = Instantiate(enemyList[0]);
-                    obj.transform.position = summonPos[0].position;
-                    obj2.transform.position = summonPos[2].position;
+                    obj.transform.position = summonPos[3].position;
+                    obj2.transform.position = summonPos[4].position;
                     activeEnemies.Add(obj.GetComponent<Unit>()); // 리스트에 추가
                     activeEnemies.Add(obj2.GetComponent<Unit>()); // 리스트에 추가
                     LocalGameManager.instance.gameProccessManager.monsterCount = 2;
@@ -86,19 +86,16 @@ public class UnitManager : MonoBehaviour, IDataInitializable
                     var obj = Instantiate(enemyList[0]);
                     var obj1 = Instantiate(enemyList[0]);
                     var obj2 = Instantiate(enemyList[0]);
-                    var obj3 = Instantiate(enemyList[0]);
 
                     obj.transform.position = summonPos[0].position;
                     obj1.transform.position = summonPos[2].position;
                     obj2.transform.position = summonPos[3].position;
-                    obj3.transform.position = summonPos[4].position;
 
                     activeEnemies.Add(obj.GetComponent<Unit>()); // 리스트에 추가
                     activeEnemies.Add(obj1.GetComponent<Unit>()); // 리스트에 추가
                     activeEnemies.Add(obj2.GetComponent<Unit>()); // 리스트에 추가
-                    activeEnemies.Add(obj3.GetComponent<Unit>()); // 리스트에 추가
 
-                    LocalGameManager.instance.gameProccessManager.monsterCount = 4;
+                    LocalGameManager.instance.gameProccessManager.monsterCount = 3;
                     break;
                 }
 
