@@ -7,7 +7,7 @@ using DG.Tweening;
 using System.Text.RegularExpressions;
 using KoreanTyper;
 
-public class DialogueRunner : MonoBehaviour
+public class DialogueRunner : MonoBehaviour, IDataInitializable
 {
     [SerializeField] private DialogueParser parser;
     public TextAsset DialogueFile;
@@ -25,7 +25,16 @@ public class DialogueRunner : MonoBehaviour
 
     void Start()
     {
-        currentLineNum = 1;
+
+    }
+
+    public void DataInitialize()
+    {
+        currentLineNum = 0;
+    }
+
+    public void Parsing()
+    {
         scriptLine = parser.Parse(DialogueFile.ToString());
     }
 
@@ -34,7 +43,7 @@ public class DialogueRunner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             ProccessNextLine();
-            LocalGameManager.instance.DisableAllInput();
+            //LocalGameManager.instance.DisableAllInput();
         }
     }
 
@@ -42,6 +51,7 @@ public class DialogueRunner : MonoBehaviour
     {
         DialoguePanel.SetActive(false);
         LocalGameManager.instance.EnableAllInput();
+        LocalGameManager.instance.unitManager.SummonEnemy(LocalGameManager.instance.gameProccessManager.proccess);
         if (LocalGameManager.instance.timeLineManager.timeLinePlaying)
         {
             PlayTimeLine();
@@ -50,6 +60,7 @@ public class DialogueRunner : MonoBehaviour
 
     public void StartDialogue()
     {
+        Parsing();
         DialoguePanel.SetActive(true);
         LocalGameManager.instance.DisableAllInput();
         ProccessNextLine();

@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8718031347414363425
 Transform:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 0}
-    - {fileID: 11400000, guid: f281f78aeac374246a1838f3566522d9, type: 2}
+    - {fileID: 0}
     - {fileID: 11400000, guid: 6bbc1f21bd60dc04a9c97423f8c994b4, type: 2}
     m_Events:
     - m_PersistentCalls:

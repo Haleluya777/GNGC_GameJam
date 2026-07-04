@@ -56,6 +56,10 @@ public class Unit : MonoBehaviour, IDamageable
 
     public void Dead()
     {
+        if (unitData.unitType == PublicEnums.UnitType.AI)
+        {
+            LocalGameManager.instance.gameProccessManager.monsterCount--;
+        }
         this.gameObject.SetActive(false);
     }
 

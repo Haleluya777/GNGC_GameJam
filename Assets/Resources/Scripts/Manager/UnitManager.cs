@@ -5,8 +5,8 @@ using UnityEngine;
 public class UnitManager : MonoBehaviour, IDataInitializable
 {
     public Unit playerUnit;
-
-    public GameObject obj;
+    public List<GameObject> enemyList;
+    public List<Transform> summonPos;
 
     void Update()
     {
@@ -18,14 +18,17 @@ public class UnitManager : MonoBehaviour, IDataInitializable
 
     }
 
-    public void SummonEnemy(GameObject prefab)
+    public void SummonEnemy(int proccess)
     {
-        obj = null;
-        obj = Instantiate(prefab);
-    }
+        Debug.Log("할렐루야");
+        switch (proccess)
+        {
+            case 0:
+                var obj = Instantiate(enemyList[0]);
+                obj.transform.position = summonPos[0].position;
+                LocalGameManager.instance.gameProccessManager.monsterCount = 1;
 
-    public void SetEnemyPosition(Transform pos)
-    {
-        obj.transform.position = pos.position;
+                break;
+        }
     }
 }
