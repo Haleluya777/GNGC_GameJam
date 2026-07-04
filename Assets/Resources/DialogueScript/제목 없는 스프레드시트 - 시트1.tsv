@@ -1,6 +1,0 @@
-Action	Detail	BGM	Result	
-T	대쉬를 학습하시겠습니까?		
-S	예 | 아니요_0 | 2		
-T	대쉬를 학습합니다.		Dash
-J	2		
-T	대쉬를 학습하지 않습니다.		

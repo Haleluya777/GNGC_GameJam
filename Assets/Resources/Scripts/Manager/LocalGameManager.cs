@@ -11,8 +11,10 @@ public class LocalGameManager : MonoBehaviour
     public ObjectPoolManager objectPoolManager;
     public UnitManager unitManager;
     public DialogueFuncManager dialogueFuncManager;
+    public DialogueRunner dialoguerunner;
     public TimeLineManager timeLineManager;
     public PlayerUIManager playerUiManager;
+    public GameProccessManager gameProccessManager;
 
     [SerializeField] private PlayerInput playerInput;
 

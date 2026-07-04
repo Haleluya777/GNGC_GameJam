@@ -10,7 +10,7 @@ using KoreanTyper;
 public class DialogueRunner : MonoBehaviour
 {
     [SerializeField] private DialogueParser parser;
-    [SerializeField] private TextAsset DialogueFile;
+    public TextAsset DialogueFile;
 
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI DialogueText;
