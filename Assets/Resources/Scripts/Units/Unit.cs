@@ -57,8 +57,12 @@ public class Unit : MonoBehaviour, IDamageable
 
     public void Dead()
     {
+        // AI 유닛 사망 처리
         if (unitData.unitType == PublicEnums.UnitType.AI)
         {
+            // 이미 게임 오버 상태라면, 몬스터가 죽어도 다음 프로세스로 넘어가면 안됨
+            if (LocalGameManager.instance.isGameOver) return;
+
             LocalGameManager.instance.unitManager.activeEnemies.Remove(this); // 활성화 리스트에서 제거
             var proccessManager = LocalGameManager.instance.gameProccessManager;
             proccessManager.monsterCount--;
@@ -68,8 +72,13 @@ public class Unit : MonoBehaviour, IDamageable
                 proccessManager.GameProccess(proccessManager.proccess);
             }
         }
+        // 플레이어 유닛 사망 처리
         else
         {
+            // 이미 게임 오버 프로세스가 진행 중이면 중복 실행 방지
+            if (LocalGameManager.instance.isGameOver) return;
+            LocalGameManager.instance.isGameOver = true; // 게임 오버 상태로 전환
+
             LocalGameManager.instance.dialoguerunner.DialogueFile = LocalGameManager.instance.gameProccessManager.gameOverScript;
             LocalGameManager.instance.dialoguerunner.StartDialogue();
         }

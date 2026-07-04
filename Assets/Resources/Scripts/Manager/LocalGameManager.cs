@@ -10,6 +10,7 @@ public class LocalGameManager : MonoBehaviour
     public static LocalGameManager instance;
 
     public Action killAll;
+    public bool isGameOver = false; // 게임 오버 상태 플래그
 
     public CoroutineRunner coroutineRunner;
     public ObjectPoolManager objectPoolManager;
@@ -63,6 +64,7 @@ public class LocalGameManager : MonoBehaviour
 
     public void DisableAllInput()
     {
+        if (playerInput == null) return;
         playerInput.actions.Disable();
         if (unitManager.playerUnit != null) // 플레이어가 파괴되었을 경우를 대비
         {
@@ -72,6 +74,7 @@ public class LocalGameManager : MonoBehaviour
 
     public void EnableAllInput()
     {
+        if (playerInput == null) return;
         playerInput.actions.Enable();
     }
 
@@ -105,6 +108,7 @@ public class LocalGameManager : MonoBehaviour
         Debug.Log("KillAllEnemy called.");
 
         // 2. 게임 상태 초기화
+        isGameOver = false; // 게임 오버 상태 초기화
         learnKnife = false;
         learnDash = false;
         gameProccessManager.proccess = 0;

@@ -2016,6 +2016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1068296678}
   - component: {fileID: 1068296679}
+  - component: {fileID: 1068296680}
   m_Layer: 0
   m_Name: LocalGameManager
   m_TagString: Untagged
@@ -2058,6 +2059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c44123447d902b49b3137148ef55943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   coroutineRunner: {fileID: 111879022}
   objectPoolManager: {fileID: 1123330198}
   unitManager: {fileID: 36740460}
@@ -2066,9 +2068,22 @@ MonoBehaviour:
   timeLineManager: {fileID: 1727118272}
   playerUiManager: {fileID: 1249203388}
   gameProccessManager: {fileID: 333031395}
+  soundManager: {fileID: 0}
   playerInput: {fileID: 971215655}
   learnKnife: 0
   learnDash: 0
+--- !u!114 &1068296680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068296677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a113289e5790774d90385f715bd3df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1104172195
 GameObject:
   m_ObjectHideFlags: 0
@@ -4187,7 +4202,12 @@ PrefabInstance:
     - target: {fileID: 2750236232062005968, guid: 7fff7df201db2794cadc39877cd2a1f7,
         type: 3}
       propertyPath: unitData.curHp
-      value: 1000
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750236232062005968, guid: 7fff7df201db2794cadc39877cd2a1f7,
+        type: 3}
+      propertyPath: unitData.maxHp
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3049175487165527146, guid: 7fff7df201db2794cadc39877cd2a1f7,
         type: 3}
