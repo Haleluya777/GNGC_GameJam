@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(SoundManager))] // SoundManager를 필수 컴포넌트로 지정
 public class LocalGameManager : MonoBehaviour
 {
     public static LocalGameManager instance;
@@ -18,6 +19,7 @@ public class LocalGameManager : MonoBehaviour
     public TimeLineManager timeLineManager;
     public PlayerUIManager playerUiManager;
     public GameProccessManager gameProccessManager;
+    public SoundManager soundManager; // 사운드 매니저 참조
 
     [SerializeField] private PlayerInput playerInput;
 
@@ -36,6 +38,7 @@ public class LocalGameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        soundManager = GetComponent<SoundManager>(); // 사운드 매니저 컴포넌트 가져오기
         killAll += unitManager.DestroyAllEnemies; // 이벤트에 적 파괴 메소드 등록
 
         foreach (IDataInitializable child in GetComponentsInChildren<IDataInitializable>())
@@ -45,6 +48,12 @@ public class LocalGameManager : MonoBehaviour
 
         learnKnife = false;
         learnDash = false;
+    }
+
+    void Start()
+    {
+        // 게임 시작 시 기본 BGM 재생
+        soundManager.PlayBgm("기본 bgm");
     }
 
     public void KillAllEnemy()
@@ -121,7 +130,8 @@ public class LocalGameManager : MonoBehaviour
         // 4. UI 매니저에 새 플레이어 정보 전달
         playerUiManager.Initialize(unitManager.playerUnit);
 
-        // 5. 게임 첫 프로세스 시작
+        // 5. BGM 및 게임 첫 프로세스 시작
+        soundManager.PlayBgm("기본 bgm");
         gameProccessManager.GameProccess(0);
         Debug.Log("--- RestartGame Finished ---");
     }

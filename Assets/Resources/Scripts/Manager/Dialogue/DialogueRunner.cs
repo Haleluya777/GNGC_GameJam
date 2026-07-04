@@ -59,10 +59,12 @@ public class DialogueRunner : MonoBehaviour, IDataInitializable
         {
             glitchComponent.StopGlitch();
         }
+        SoundManager.instance.PlayBgm("기본 bgm");
     }
 
     public void EndDialogue()
     {
+        StopDialogueBoxGlitch(); // 글리치 효과 및 BGM 원상복구
         currentLineNum = 0;
         DialoguePanel.SetActive(false);
         LocalGameManager.instance.EnableAllInput();

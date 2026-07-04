@@ -179,9 +179,9 @@ MonoBehaviour:
       _dynamic: 1
   parent: {fileID: 0}
   WeightList:
-  - 10
-  - 55
   - 35
+  - 55
+  - 10
 --- !u!114 &-8144999558653994981
 MonoBehaviour:
   m_ObjectHideFlags: 0

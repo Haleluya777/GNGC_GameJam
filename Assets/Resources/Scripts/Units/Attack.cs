@@ -71,6 +71,7 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
                 return;
             }
 
+            SoundManager.instance.PlaySfx("칼 사운드");
             unit.isAttacking = true;
             DOVirtual.DelayedCall(.5f, () => unit.isAttacking = false);
             parryingSkill.UseSKill(this);

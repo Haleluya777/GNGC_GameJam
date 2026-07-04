@@ -52,6 +52,7 @@ public class GameProccessManager : MonoBehaviour, IDataInitializable
 
             case 5:
                 Debug.Log("보스 등장.");
+                SoundManager.instance.PlayBgm("보스전 bgm");
                 LocalGameManager.instance.unitManager.SummonEnemy(5);
                 monsterCount = 1;
                 break;
