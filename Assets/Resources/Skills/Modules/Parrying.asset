@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Parrying
   m_EditorClassIdentifier: 
   nodeGraph: {fileID: 11400000, guid: 57da0bb4f9ead4940b70bc09bb550fcf, type: 2}
-  coolDown: 2
+  coolDown: 1

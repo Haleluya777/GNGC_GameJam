@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Setting Distance
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: 40}
+  position: {x: 280, y: -40}
   ports:
     keys:
     - parent
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: 280}
+  position: {x: 280, y: 232}
   ports:
     keys:
     - parent
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: Throw Grenade
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: 696}
+  position: {x: 280, y: 632}
   ports:
     keys:
     - parent
@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Name: Shooting
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: 840}
+  position: {x: 280, y: 760}
   ports:
     keys:
     - parent
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Name: Aiming
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: 168}
+  position: {x: 280, y: 88}
   ports:
     keys:
     - parent

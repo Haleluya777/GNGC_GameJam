@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DashModule
   m_EditorClassIdentifier: 
   nodeGraph: {fileID: 11400000, guid: a3536334c54691c4b9d816060cb841d9, type: 2}
-  coolDown: 1.5
+  coolDown: 1
