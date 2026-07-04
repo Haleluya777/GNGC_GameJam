@@ -14,6 +14,7 @@ public interface ISkillCaster
     Vector2 GetPosition();
     Vector2 GetShootingPos();
     GameObject GetGameObject();
+    GameObject GetShootObj();
     string GetTag();
     T GetCom<T>();
 }

@@ -16,7 +16,7 @@ public class SummonBullet : SkillNode
         var obj = LocalGameManager.instance.objectPoolManager.poolDic["Bullet"].GetGo(objName);
 
         //obj.transform.SetParent(caster.GetGameObject().transform);
-        obj.transform.position = caster.GetGameObject().transform.position;
+        obj.transform.position = caster.GetShootObj().transform.position;
 
         obj.GetComponent<SkillObjBase>().ObjInit(caster.GetDirection(), caster.GetTag(), caster);
     }

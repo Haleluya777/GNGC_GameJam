@@ -42,6 +42,10 @@ public class DialogueRunner : MonoBehaviour
     {
         DialoguePanel.SetActive(false);
         LocalGameManager.instance.EnableAllInput();
+        if (LocalGameManager.instance.timeLineManager.timeLinePlaying)
+        {
+            PlayTimeLine();
+        }
     }
 
     public void StartDialogue()

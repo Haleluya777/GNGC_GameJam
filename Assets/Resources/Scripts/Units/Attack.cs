@@ -118,6 +118,11 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
         return 1;
     }
 
+    public GameObject GetShootObj()
+    {
+        return this.transform.GetChild(0).gameObject;
+    }
+
     public Vector3 GetDirection()
     {
         return parentObj.GetComponent<Unit>().dir;

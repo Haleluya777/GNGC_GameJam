@@ -42,12 +42,12 @@ public class HitBox : PoolAble
                 }
                 else if (other.gameObject.layer == 9) //그라나도
                 {
-                    //if (other.GetComponent<Rigidbody>().velocity == Vector3.zero) return; //멈춰 있는 오브젝트는 무지개 반사 안통함.
+                    if (other.GetComponent<Rigidbody>().velocity == Vector3.zero) return; //멈춰 있는 오브젝트는 무지개 반사 안통함.
                     skillObj.Refelection(caster, caster.GetMousePosition(), 1f);
                 }
             }
         }
-        else //총알을 제외한 나머지
+        else if (other.gameObject.layer == 8)
         {
             if (this.gameObject.tag != other.tag)
             {

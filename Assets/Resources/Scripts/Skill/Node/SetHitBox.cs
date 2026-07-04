@@ -28,7 +28,7 @@ public class SetHitBox : SkillNode
         hitBox.tag = caster.GetGameObject().tag;
 
         hitBox.transform.localScale = size;
-        hitBox.transform.localPosition = new Vector3(.25f, 0, 0);
+        hitBox.transform.localPosition = new Vector3(.75f, .5f, .3f);
 
         hitBoxCom.Initialize(totalDmg, caster, duration);
 
