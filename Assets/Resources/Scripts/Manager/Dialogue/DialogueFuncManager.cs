@@ -20,6 +20,10 @@ public class DialogueFuncManager : MonoBehaviour
             case "Dash":
                 LocalGameManager.instance.DashLearning();
                 break;
+
+            case "Restart":
+                LocalGameManager.instance.RestartGame();
+                break;
         }
     }
 }

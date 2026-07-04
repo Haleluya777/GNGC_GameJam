@@ -37,8 +37,8 @@ public class SkillModule : ScriptableObject
         unit = caster.GetCom<Unit>();
         if (OnCoolDown)
         {
-            Debug.Log($"남은 쿨타임 : {remainingCoolDown}");
-            Debug.Log("쿨타임 중.");
+            //Debug.Log($"남은 쿨타임 : {remainingCoolDown}");
+            //Debug.Log("쿨타임 중.");
             return false;
         }
 

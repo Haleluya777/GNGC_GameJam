@@ -6,6 +6,7 @@ using DG.Tweening;
 public class Grenade : SkillObjBase, IDamageable
 {
     [SerializeField] private Rigidbody rigid;
+    [SerializeField] private float explosionRadius = 3f; // 폭발 반경
     private bool isReleased;
 
     private Vector3 startPoint, endPoint, gravity;
@@ -71,6 +72,23 @@ public class Grenade : SkillObjBase, IDamageable
     public void Explosion()
     {
         Debug.Log("뿜!");
+
+        // 지정된 반경 내의 모든 콜라이더를 찾습니다.
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        foreach (var col in colliders)
+        {
+            // IDamageable 인터페이스를 가진 컴포넌트를 찾습니다.
+            if (col.TryGetComponent<IDamageable>(out var damageable))
+            {
+                // 수류탄 자기 자신에게는 데미지를 주지 않습니다.
+                if ((MonoBehaviour)damageable != this)
+                {
+                    damageable.TakeDamage(3);
+                }
+            }
+        }
+        
         this.ReleaseObject();
     }
 

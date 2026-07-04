@@ -247,8 +247,8 @@ MonoBehaviour:
   state: 0
   unitData:
     unitType: 0
-    maxHp: 5
-    curHp: 5
+    maxHp: 30
+    curHp: 30
   groundLayer:
     serializedVersion: 2
     m_Bits: 64

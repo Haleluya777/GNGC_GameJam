@@ -10,7 +10,7 @@ public class Goal : MonoBehaviour
         {
             var proccessManager = LocalGameManager.instance.gameProccessManager;
             proccessManager.proccess++;
-            proccessManager.GameProccess(proccessManager.proccess++);
+            proccessManager.GameProccess(proccessManager.proccess);
             Destroy(this.gameObject);
         }
     }

@@ -46,6 +46,7 @@ public class Unit : MonoBehaviour, IDamageable
 
         useKnife = false;
         useDash = false;
+        cam = Camera.main;
     }
 
     public void TakeDamage(int dmg)
@@ -58,6 +59,7 @@ public class Unit : MonoBehaviour, IDamageable
     {
         if (unitData.unitType == PublicEnums.UnitType.AI)
         {
+            LocalGameManager.instance.unitManager.activeEnemies.Remove(this); // 활성화 리스트에서 제거
             var proccessManager = LocalGameManager.instance.gameProccessManager;
             proccessManager.monsterCount--;
             if (proccessManager.monsterCount <= 0)
@@ -65,6 +67,11 @@ public class Unit : MonoBehaviour, IDamageable
                 proccessManager.proccess++;
                 proccessManager.GameProccess(proccessManager.proccess);
             }
+        }
+        else
+        {
+            LocalGameManager.instance.dialoguerunner.DialogueFile = LocalGameManager.instance.gameProccessManager.gameOverScript;
+            LocalGameManager.instance.dialoguerunner.StartDialogue();
         }
         this.gameObject.SetActive(false);
     }

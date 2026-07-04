@@ -49,6 +49,16 @@ public class AIController : MonoBehaviour, IDataInitializable
         }
     }
 
+    void OnEnable()
+    {
+        LocalGameManager.instance.killAll += KillSelf;
+    }
+
+    public void KillSelf()
+    {
+        Debug.Log("스스로 죽어라.");
+        Destroy(parentObj);
+    }
     public void CallMoveEvent(Vector2 dir)
     {
         if (curState != UnitState.Moving) curState = UnitState.Moving;

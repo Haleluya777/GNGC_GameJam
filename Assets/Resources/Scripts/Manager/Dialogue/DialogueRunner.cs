@@ -47,6 +47,20 @@ public class DialogueRunner : MonoBehaviour, IDataInitializable
         }
     }
 
+    public void DialogueBoxGlitch()
+    {
+        DialoguePanel.transform.GetChild(0).GetComponent<DialogueBoxGlitch>().StartGlitch();
+    }
+
+    public void StopDialogueBoxGlitch()
+    {
+        var glitchComponent = DialoguePanel.transform.GetChild(0).GetComponent<DialogueBoxGlitch>();
+        if (glitchComponent != null)
+        {
+            glitchComponent.StopGlitch();
+        }
+    }
+
     public void EndDialogue()
     {
         currentLineNum = 0;
@@ -57,6 +71,14 @@ public class DialogueRunner : MonoBehaviour, IDataInitializable
         {
             PlayTimeLine();
         }
+    }
+
+    public void StopAndReset()
+    {
+        StopAllCoroutines(); // 진행중인 타이핑 코루틴 중지
+        currentLineNum = 0;
+        DialoguePanel.SetActive(false);
+        // EndDialogue와 달리, 입력 활성화나 적 소환은 하지 않음
     }
 
     public void StartDialogue()
@@ -202,8 +224,9 @@ public class DialogueRunner : MonoBehaviour, IDataInitializable
 
         //대사에 \n이 포함되어 있을 경우, 줄바꿈 처리.
         if (line.Detail.Contains("\\n")) line.Detail = line.Detail.Replace("\\n", "\n");
-        //대사에 '{}'가 존재할 경우, 대괄호 안의 문자열의 색을 붉은 색으로 변경.
-        line.Detail = Regex.Replace(line.Detail, @"\{(.*?)\}", "<color=#FF0000>$1</color>");
+
+        //대사에 '{}'가 존재할 경우, 임시 문자로 변경.
+        line.Detail = Regex.Replace(line.Detail, @"\{(.*?)\}", "⦃$1⦄");
 
         /*Debug.Log(int.Parse(line.Actor.Split('_')[0]));*/
 
@@ -213,48 +236,22 @@ public class DialogueRunner : MonoBehaviour, IDataInitializable
 
     private IEnumerator TypingTxt(string args)
     {
-        string pattern = @"\((\d+(\.\d+)?)\)";
-        MatchCollection matches = Regex.Matches(args, pattern);
+        // 진단용 코드: KoreanTyper를 사용하지 않고, 딜레이 태그도 무시합니다.
+        string fullText = args; // ⦃ ⦄ 마커가 포함된 텍스트
 
-        // 태그가 제거된 실제 출력될 문자열
-        string fullText = Regex.Replace(args, pattern, "");
-
-        int currentStep = 0;
-        int lastProcessedIndex = 0;
-        int totalTypingLength = fullText.GetTypingLength();
-
-        foreach (Match match in matches)
-        {
-            // 태그 직전까지의 텍스트 길이를 통해 타이핑 스텝 계산
-            string textBeforeTag = args.Substring(lastProcessedIndex, match.Index - lastProcessedIndex);
-            int stepsForThisSegment = textBeforeTag.GetTypingLength();
-
-            for (int i = 0; i < stepsForThisSegment; i++)
-            {
-                currentStep++;
-                DialogueText.text = fullText.Typing(currentStep);
-                yield return new WaitForSeconds(.05f);
-            }
-
-            // 딜레이 적용
-            if (float.TryParse(match.Groups[1].Value, out float delay))
-            {
-                yield return new WaitForSeconds(delay);
-            }
-
-            lastProcessedIndex = match.Index + match.Length;
-        }
-
-        // 남은 부분 타이핑
-        while (currentStep < totalTypingLength)
-        {
-            currentStep++;
-            DialogueText.text = fullText.Typing(currentStep);
-            yield return new WaitForSeconds(.05f);
-        }
-
-        DialogueText.text = fullText;
+        // 이전 타이핑이 남아있지 않도록 초기화
+        DialogueText.text = "";
         yield return null;
-        //currentLineNum++;
+
+        for (int i = 1; i <= fullText.Length; i++)
+        {
+            string partialText = fullText.Substring(0, i);
+            DialogueText.text = partialText.Replace("⦃", "<color=#FF0000>").Replace("⦄", "</color>");
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        // 최종 텍스트를 완전한 태그로 설정
+        DialogueText.text = fullText.Replace("⦃", "<color=#FF0000>").Replace("⦄", "</color>");
+        yield return null;
     }
 }
