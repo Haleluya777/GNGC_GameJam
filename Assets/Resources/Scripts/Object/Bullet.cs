@@ -5,6 +5,7 @@ using DG.Tweening;
 public class Bullet : SkillObjBase
 {
     [SerializeField] private Rigidbody rigid;
+    [SerializeField] private GameObject reflectionVfx; // 반사 VFX 프리팹
     private Vector2 currentDir;
     private Tween delayCall;
     private float moveSpeed = 10f;
@@ -29,6 +30,21 @@ public class Bullet : SkillObjBase
         this.transform.rotation = Quaternion.LookRotation(dir.normalized);
         if (delayCall != null && delayCall.IsActive()) delayCall.Kill();
         delayCall = DOVirtual.DelayedCall(10f, () => { if (!isReleased) ReturnToPool(); });
+    }
+
+    public override void Refelection(Vector3 dir, ISkillCaster newCaster)
+    {
+        // VFX 생성
+        if (reflectionVfx != null)
+        {
+            Instantiate(reflectionVfx, transform.position, Quaternion.identity);
+        }
+
+        // 기존 소멸 로직 중지
+        if (delayCall != null && delayCall.IsActive()) delayCall.Kill();
+
+        // 새로운 캐스터와 태그, 방향으로 재설정
+        ObjInit(dir, newCaster.GetTag(), newCaster);
     }
 
     public void ReturnToPool()

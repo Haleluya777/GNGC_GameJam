@@ -7,6 +7,9 @@ public class Grenade : SkillObjBase, IDamageable
 {
     [SerializeField] private Rigidbody rigid;
     [SerializeField] private float explosionRadius = 3f; // 폭발 반경
+    [SerializeField] private GameObject explosionVfx; // 폭발 VFX 프리팹
+    [SerializeField] private GameObject reflectionVfx; // 반사 VFX 프리팹
+
     private bool isReleased;
 
     private Vector3 startPoint, endPoint, gravity;
@@ -39,6 +42,12 @@ public class Grenade : SkillObjBase, IDamageable
 
     public override void Refelection(ISkillCaster newCaster, Vector3 targetPos, float duration)
     {
+        // VFX 생성
+        if (reflectionVfx != null)
+        {
+            Instantiate(reflectionVfx, transform.position, Quaternion.identity);
+        }
+
         //if (rigid.velocity == Vector3.zero) return;
         Debug.Log("반사중");
         rigid.velocity = Vector3.zero;
@@ -72,6 +81,12 @@ public class Grenade : SkillObjBase, IDamageable
     public void Explosion()
     {
         Debug.Log("뿜!");
+
+        // VFX 생성
+        if (explosionVfx != null)
+        {
+            Instantiate(explosionVfx, transform.position, Quaternion.identity);
+        }
 
         // 지정된 반경 내의 모든 콜라이더를 찾습니다.
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
