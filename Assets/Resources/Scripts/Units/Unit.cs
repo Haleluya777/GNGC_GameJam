@@ -44,8 +44,8 @@ public class Unit : MonoBehaviour, IDamageable
             child.DataInitialize();
         }
 
-        useKnife = false;
-        useDash = false;
+        useKnife = true;
+        useDash = true;
     }
 
     public void TakeDamage(int dmg)
@@ -64,7 +64,7 @@ public class Unit : MonoBehaviour, IDamageable
         if (unitData.unitType == PublicEnums.UnitType.Player)
         {
             Ray ray = cam.ScreenPointToRay(mouseScreenPos);
-            if (!isAttacking) transform.localScale = dir.x >= 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            if (!isAttacking) transform.localScale = dir.x >= 0 ? new Vector3(2, 2, 2) : new Vector3(-2, 2, 2);
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
             {
                 mouseTargetPos = hit.point;
@@ -73,8 +73,8 @@ public class Unit : MonoBehaviour, IDamageable
             }
         }
 
-        time += Time.deltaTime;
-        if (time >= 5f && unitData.grenadeCount < 2)
+        if (unitData.grenadeCount < 2) time += Time.deltaTime;
+        if (time >= 5f)
         {
             unitData.grenadeCount++;
             time = 0;

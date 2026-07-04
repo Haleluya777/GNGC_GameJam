@@ -13,17 +13,11 @@ public class DialogueRunner : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI DialogueText;
-    [SerializeField] private Image NextImg;
 
     [Header("DialogueBox 관련 요소들")]
     [SerializeField] private GameObject DialoguePanel; //대화창 전체 부모 오브젝트.
     [SerializeField] private GameObject ChoiceButtonPrefab; //선택지 버튼 프리팹
     [SerializeField] private Transform OptionContainer; // ChoiceButton들의 부모 오브젝트
-
-    [Header("DialogueLog 관련 요소들.")]
-    [SerializeField] private GameObject DialogueLogPanel; //대화 로그 창 전체 부모 오브젝트.
-    [SerializeField] private GameObject DialogueLogObj; //대화 로그 창 오브젝트.
-    [SerializeField] private Transform DialogueLogContainer; //대화 로그 창의 부모 오브젝트.
 
     private List<DialogueParser.ParsedLine> scriptLine;
     private int currentLineNum;
@@ -70,6 +64,13 @@ public class DialogueRunner : MonoBehaviour
             case "S": //액션 노드가 S일 경우, 선택지를 제시한 후, 고른 선택지에 따라 줄 이동.
                 {
                     HandleChoices(line.Detail.Split('|'), line.Detail.Split('|'), line);
+                    return;
+                }
+
+            case "J":
+                {
+                    int jumpLine = int.Parse(line.Detail);
+                    currentLineNum = currentLineNum + jumpLine;
                     return;
                 }
 

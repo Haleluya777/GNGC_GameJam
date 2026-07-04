@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class HitBox : PoolAble
 {
@@ -13,7 +14,7 @@ public class HitBox : PoolAble
         caster = _caster;
         totalDmg = damage;
         limitTime = _limitTime;
-        Invoke("ReleaseHitBox", 1f);
+        DOVirtual.DelayedCall(limitTime, () => ReleaseHitBox());
     }
 
     public void ReleaseHitBox()

@@ -21,7 +21,7 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
 
     public void DataInitialize()
     {
-        anim = parentObj.GetComponent<Animator>();
+        anim = parentObj.GetComponentInChildren<Animator>();
         unit = parentObj.GetComponent<Unit>();
 
         shootSkill = Instantiate(shootSkill);
