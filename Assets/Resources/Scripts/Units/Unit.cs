@@ -11,7 +11,6 @@ public struct UnitData
     public PublicEnums.UnitType unitType;
     public int maxHp;
     public int curHp;
-    public int grenadeCount;
 }
 
 public class Unit : MonoBehaviour, IDamageable
@@ -72,13 +71,6 @@ public class Unit : MonoBehaviour, IDamageable
                 dir = mouseTargetPos - this.gameObject.transform.position;
                 dir.y = 0;
             }
-        }
-
-        if (unitData.grenadeCount < 2) time += Time.deltaTime;
-        if (time >= 5f)
-        {
-            unitData.grenadeCount++;
-            time = 0;
         }
 
         SetStateAnim();

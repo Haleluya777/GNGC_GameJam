@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "SkillModule")]
 public class SkillModule : ScriptableObject
@@ -17,6 +18,7 @@ public class SkillModule : ScriptableObject
 
     public bool OnCoolDown => remainingCoolDown > 0;
     public float RemainingCoolDown => remainingCoolDown;
+    public float CoolDown => coolDown;
 
     void Awake()
     {

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Grenade
   m_EditorClassIdentifier: 
   nodeGraph: {fileID: 11400000, guid: f1c3308d09d20d94a856ff8d89e9d32d, type: 2}
-  coolDown: 0.5
+  coolDown: 3
+  attackTime: 0
