@@ -1,0 +1,4 @@
+Action	Detail	BGM	Result
+T	표본 손상 감지 {이전 데이터로 롤백하시겠습니까?}		
+S	예|아니오_0|0		
+	{Error}		

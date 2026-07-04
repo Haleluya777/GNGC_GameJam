@@ -15,11 +15,7 @@ public class GameProccessManager : MonoBehaviour, IDataInitializable
 
     void Update()
     {
-        if (monsterCount == 0)
-        {
-            proccess++;
-            GameProccess(proccess);
-        }
+
     }
 
     public void GameProccess(int proccess)
@@ -29,25 +25,21 @@ public class GameProccessManager : MonoBehaviour, IDataInitializable
             case 0:
                 LocalGameManager.instance.dialoguerunner.DialogueFile = dialogueScripts[0];
                 LocalGameManager.instance.dialoguerunner.StartDialogue();
-                monsterCount = 1;
                 break;
 
             case 1:
                 LocalGameManager.instance.dialoguerunner.DialogueFile = dialogueScripts[1];
                 LocalGameManager.instance.dialoguerunner.StartDialogue();
-                monsterCount = 0;
                 break;
 
             case 2:
                 LocalGameManager.instance.dialoguerunner.DialogueFile = dialogueScripts[2];
                 LocalGameManager.instance.dialoguerunner.StartDialogue();
-                monsterCount = 1;
                 break;
 
             case 3:
                 LocalGameManager.instance.dialoguerunner.DialogueFile = dialogueScripts[3];
                 LocalGameManager.instance.dialoguerunner.StartDialogue();
-                monsterCount = 0;
                 break;
         }
     }

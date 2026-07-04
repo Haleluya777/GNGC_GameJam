@@ -49,6 +49,7 @@ public class DialogueRunner : MonoBehaviour, IDataInitializable
 
     public void EndDialogue()
     {
+        currentLineNum = 0;
         DialoguePanel.SetActive(false);
         LocalGameManager.instance.EnableAllInput();
         LocalGameManager.instance.unitManager.SummonEnemy(LocalGameManager.instance.gameProccessManager.proccess);

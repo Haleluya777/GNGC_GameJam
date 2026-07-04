@@ -44,8 +44,8 @@ public class Unit : MonoBehaviour, IDamageable
             child.DataInitialize();
         }
 
-        useKnife = true;
-        useDash = true;
+        useKnife = false;
+        useDash = false;
     }
 
     public void TakeDamage(int dmg)
@@ -58,7 +58,13 @@ public class Unit : MonoBehaviour, IDamageable
     {
         if (unitData.unitType == PublicEnums.UnitType.AI)
         {
-            LocalGameManager.instance.gameProccessManager.monsterCount--;
+            var proccessManager = LocalGameManager.instance.gameProccessManager;
+            proccessManager.monsterCount--;
+            if (proccessManager.monsterCount <= 0)
+            {
+                proccessManager.proccess++;
+                proccessManager.GameProccess(proccessManager.proccess);
+            }
         }
         this.gameObject.SetActive(false);
     }

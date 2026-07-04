@@ -23,12 +23,32 @@ public class UnitManager : MonoBehaviour, IDataInitializable
         Debug.Log("할렐루야");
         switch (proccess)
         {
-            case 0:
-                var obj = Instantiate(enemyList[0]);
-                obj.transform.position = summonPos[0].position;
-                LocalGameManager.instance.gameProccessManager.monsterCount = 1;
+            case 0: //1단계.
+                {
+                    var obj = Instantiate(enemyList[0]);
+                    obj.transform.position = summonPos[0].position;
+                    LocalGameManager.instance.gameProccessManager.monsterCount = 1;
+                    break;
+                }
 
-                break;
+
+            case 1: //2단계.
+                {
+                    var goal = Instantiate(enemyList[2]);
+                    goal.transform.position = summonPos[2].position;
+                    break;
+                }
+
+            case 2: //3단계.
+                {
+                    var obj = Instantiate(enemyList[0]);
+                    var obj2 = Instantiate(enemyList[0]);
+                    obj.transform.position = summonPos[0].position;
+                    obj2.transform.position = summonPos[2].position;
+                    LocalGameManager.instance.gameProccessManager.monsterCount = 2;
+                    break;
+                }
+
         }
     }
 }
