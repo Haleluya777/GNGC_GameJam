@@ -25,7 +25,7 @@ public class DialogueRunner : MonoBehaviour
 
     void Start()
     {
-        currentLineNum = 0;
+        currentLineNum = 1;
         scriptLine = parser.Parse(DialogueFile.ToString());
     }
 
@@ -42,6 +42,23 @@ public class DialogueRunner : MonoBehaviour
     {
         DialoguePanel.SetActive(false);
         LocalGameManager.instance.EnableAllInput();
+    }
+
+    public void StartDialogue()
+    {
+        DialoguePanel.SetActive(true);
+        LocalGameManager.instance.DisableAllInput();
+        ProccessNextLine();
+    }
+
+    public void PauseTimeLine()
+    {
+        LocalGameManager.instance.timeLineManager.director.Pause();
+    }
+
+    public void PlayTimeLine()
+    {
+        LocalGameManager.instance.timeLineManager.director.Play();
     }
 
     public void ProccessNextLine()

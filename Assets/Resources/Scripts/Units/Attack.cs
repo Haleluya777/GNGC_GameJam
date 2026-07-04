@@ -56,6 +56,11 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
         }
     }
 
+    public void Shoot()
+    {
+        shootSkill.UseSKill(this);
+    }
+
     public void Melee(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && unit.useKnife)
@@ -96,6 +101,11 @@ public class Attack : MonoBehaviour, ISkillCaster, IDataInitializable
             }
             grenadeSkill.UseSKill(this);
         }
+    }
+
+    public void ThrowGrenade()
+    {
+        grenadeSkill.UseSKill(this);
     }
 
     public void PlayAnimation(string animName)
