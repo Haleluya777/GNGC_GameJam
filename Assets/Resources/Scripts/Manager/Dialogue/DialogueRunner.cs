@@ -34,12 +34,14 @@ public class DialogueRunner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             ProccessNextLine();
+            LocalGameManager.instance.DisableAllInput();
         }
     }
 
     public void EndDialogue()
     {
         DialoguePanel.SetActive(false);
+        LocalGameManager.instance.EnableAllInput();
     }
 
     public void ProccessNextLine()
@@ -62,7 +64,9 @@ public class DialogueRunner : MonoBehaviour
 
             case "S": //액션 노드가 S일 경우, 선택지를 제시한 후, 고른 선택지에 따라 줄 이동.
                 {
-                    HandleChoices(line.Detail.Split('|'), line.Detail.Split('|'), line);
+                    string condition = line.Detail.Split('_')[0];
+                    string result = line.Detail.Split('_')[1];
+                    HandleChoices(condition.Split('|'), result.Split('|'), line);
                     return;
                 }
 
@@ -70,6 +74,7 @@ public class DialogueRunner : MonoBehaviour
                 {
                     int jumpLine = int.Parse(line.Detail);
                     currentLineNum = currentLineNum + jumpLine;
+                    ProccessNextLine();
                     return;
                 }
 
@@ -106,7 +111,7 @@ public class DialogueRunner : MonoBehaviour
             results[i] = results[i].Trim();
         }
 
-        DialoguePanel.SetActive(false);
+        //DialoguePanel.SetActive(false);
 
         for (int i = 0; i < selectors.Length; i++)
         {
@@ -195,7 +200,7 @@ public class DialogueRunner : MonoBehaviour
             {
                 currentStep++;
                 DialogueText.text = fullText.Typing(currentStep);
-                yield return new WaitForSeconds(.15f);
+                yield return new WaitForSeconds(.05f);
             }
 
             // 딜레이 적용
@@ -212,7 +217,7 @@ public class DialogueRunner : MonoBehaviour
         {
             currentStep++;
             DialogueText.text = fullText.Typing(currentStep);
-            yield return new WaitForSeconds(.15f);
+            yield return new WaitForSeconds(.05f);
         }
 
         DialogueText.text = fullText;

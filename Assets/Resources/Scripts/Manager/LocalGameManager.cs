@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LocalGameManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class LocalGameManager : MonoBehaviour
     public ObjectPoolManager objectPoolManager;
     public UnitManager unitManager;
     public DialogueFuncManager dialogueFuncManager;
+
+    [SerializeField] private PlayerInput playerInput;
 
     public bool learnKnife;
     public bool learnDash;
@@ -33,6 +36,16 @@ public class LocalGameManager : MonoBehaviour
 
         learnKnife = false;
         learnDash = false;
+    }
+
+    public void DisableAllInput()
+    {
+        playerInput.actions.Disable();
+    }
+
+    public void EnableAllInput()
+    {
+        playerInput.actions.Enable();
     }
 
     public void KnifeLearning()

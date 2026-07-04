@@ -65,7 +65,7 @@ public class Unit : MonoBehaviour, IDamageable
         if (unitData.unitType == PublicEnums.UnitType.Player)
         {
             Ray ray = cam.ScreenPointToRay(mouseScreenPos);
-            if (!isAttacking) transform.localScale = dir.x >= 0 ? new Vector3(2, 2, 2) : new Vector3(-2, 2, 2);
+            if (!isAttacking) transform.localScale = dir.x >= 0 ? new Vector3(1.5f, 1.5f, 1.5f) : new Vector3(-1.5f, 1.5f, 1.5f);
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
             {
                 mouseTargetPos = hit.point;
