@@ -55,7 +55,7 @@ public class PlayerUIManager : MonoBehaviour, IDataInitializable
         DodgeCoolDown();
         BombCoolDown();
         ParryingCoolDown();
-        hpBar.value = (float)(unit.unitData.curHp / 5f);
+        hpBar.value = (float)((float)unit.unitData.curHp / (float)unit.unitData.maxHp);
     }
 
     public void FadeInOut()
