@@ -28,11 +28,11 @@ public class Movement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && unit.state != Unit.UnitState.Attacking)
+        if (context.phase == InputActionPhase.Performed)
         {
             dir = context.ReadValue<Vector2>();
         }
-        else if (context.phase == InputActionPhase.Canceled && unit.state != Unit.UnitState.Attacking)
+        else if (context.phase == InputActionPhase.Canceled)
         {
             dir = Vector2.zero;
             //unit.state = Unit.UnitState.Idle;
